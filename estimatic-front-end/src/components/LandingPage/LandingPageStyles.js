@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const breakPointOne = "900px";
 const maxScreenWidth = "1300px";
+const companyColor = "#3B49B8";
 
 export const BasicHero = styled.div`
   width: 100vw;
@@ -82,14 +83,15 @@ export const BasicHero = styled.div`
     linear-gradient(0deg, #2625e3, #0bbaef);
   margin: 0;
   padding: 0;
-  padding-top: 20vh;
   display: flex;
   justify-content: center;
+  align-items: center;
 
   @media (max-width: ${breakPointOne}) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: 20vh;
   }
 `;
 // for some reason, clip path causing nav bar to go away?
@@ -148,10 +150,11 @@ export const LeftPanel = styled.div`
 
   button {
     margin-left: 32px;
+    margin-top: 16px;
     width: 160px;
     padding: 12px 0;
     border-radius: 32px;
-    background: #3b49b8;
+    background: ${companyColor};
     color: white;
     border: none;
     cursor: pointer;
@@ -178,7 +181,7 @@ export const LeftPanel = styled.div`
   }
   @media (max-width: ${breakPointOne}) {
     width: 95%;
-    margin-bottom: 64px;
+    margin-bottom: 16px;
     padding-right: 0px;
   }
 `;
@@ -186,46 +189,14 @@ export const LeftPanel = styled.div`
 export const RightPanel = styled.div`
   width: 44%;
   max-width: 600px;
+  height: 400px;
   margin-right: 32px;
-  height: 100%;
-  min-height: 400px;
-  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
   max-width: 600px;
   display: flex;
   justify-content: start;
   align-items: start;
   flex-direction: column;
-
-  button {
-    margin-left: 32px;
-    width: 160px;
-    padding: 12px 0;
-    border-radius: 32px;
-    background: #3b49b8;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 800;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
-  }
-
-  h1 {
-    padding: 32px;
-    padding-bottom: 16px;
-    font-weight: 300;
-    font-size: 48px;
-    text-align: left;
-    margin: 0 auto;
-    color: white;
-  }
-  p {
-    color: white;
-    text-align: left;
-    padding-left: 32px;
-    font-size: 16px;
-    line-height: 24px;
-  }
 
   @media (max-width: ${breakPointOne}) {
     width: 95%;
