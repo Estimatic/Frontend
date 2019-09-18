@@ -10,6 +10,7 @@ export default function NavBar() {
           <li>about</li>
           <li>pricing</li>
           <li>FAQ</li>
+          <button>login/sign up</button>
         </ul>
       </NavBarInnerWrapper>
     </NavBarWrapper>

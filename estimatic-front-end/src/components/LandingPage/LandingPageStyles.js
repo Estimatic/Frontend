@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const breakPointOne = "900px";
+const breakPointTwo = "640px";
+
 const maxScreenWidth = "1300px";
 const companyColor = "#3B49B8";
 
@@ -116,6 +118,10 @@ export const NavBarWrapper = styled.div`
     margin: 16px 32px;
     padding: 0;
     font-size: 32px;
+    cursor: pointer;
+    @media (min-width: 1350px) {
+      margin-left: 8px;
+    }
   }
 
   ul {
@@ -125,6 +131,9 @@ export const NavBarWrapper = styled.div`
       list-style-type: none;
       padding: 0 16px;
       cursor: pointer;
+      @media (max-width: ${breakPointTwo}) {
+        display: none;
+      }
     }
   }
 `;
@@ -136,6 +145,27 @@ export const NavBarInnerWrapper = styled.div`
   align-items: center;
   max-width: ${maxScreenWidth};
   margin: auto;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  button {
+    width: 128px;
+    padding: 12px 0;
+    font-size: 14px;
+    background: #449ece;
+    color: white;
+    border: none;
+    border-radius: 32px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  button:hover {
+    background: ${companyColor};
+  }
 `;
 
 export const LeftPanel = styled.div`

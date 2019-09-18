@@ -14,10 +14,10 @@ export default function LandingPage() {
         <LeftPanel>
           <h1>Build and beautify your estimates</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            YOU know how important quality materials are for your customers.
+            Your customers however... may not. Estimatic's mission is to make it
+            easier for you to convay quality and to increase your chances of
+            selling the higher quality product.
           </p>
           <button>Learn More</button>
         </LeftPanel>
