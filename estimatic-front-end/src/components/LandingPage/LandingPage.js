@@ -1,9 +1,10 @@
 import React from "react";
 import { BasicHero } from "./LandingPageStyles";
 import NavBar from "./parts/NavBar";
+import InfoSection from "./parts/InfoSection";
 
 import styled from "styled-components";
-import { LeftPanel } from "./LandingPageStyles";
+import { LeftPanel, RightPanel } from "./LandingPageStyles";
 
 export default function LandingPage() {
   return (
@@ -20,7 +21,11 @@ export default function LandingPage() {
           </p>
           <button>Learn More</button>
         </LeftPanel>
+        <RightPanel>
+          <p>hi</p>
+        </RightPanel>
       </BasicHero>
+      <InfoSection></InfoSection>
     </div>
   );
 }

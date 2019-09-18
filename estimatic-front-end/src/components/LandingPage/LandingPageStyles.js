@@ -1,8 +1,12 @@
 import styled from "styled-components";
 
+const breakPointOne = "900px";
+const maxScreenWidth = "1300px";
+
 export const BasicHero = styled.div`
   width: 100vw;
-  height: 80vh;
+  min-height: 100vh;
+
   background: linear-gradient(
       52deg,
       rgba(163, 163, 163, 0.09) 0%,
@@ -79,15 +83,28 @@ export const BasicHero = styled.div`
   margin: 0;
   padding: 0;
   padding-top: 20vh;
-  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: ${breakPointOne}) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
+// for some reason, clip path causing nav bar to go away?
+/* 
+
+  clip-path: polygon(0% 0%, 100% 0, 100% 95%, 50% 100%, 0 96%);
+
+*/
 
 export const NavBarWrapper = styled.div`
   width: 100%;
   margin: auto;
   position: absolute;
   top: 0;
-  z-axis: 2;
+  z-axis: 20;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -110,9 +127,69 @@ export const NavBarWrapper = styled.div`
   }
 `;
 
+export const NavBarInnerWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: ${maxScreenWidth};
+  margin: auto;
+`;
+
 export const LeftPanel = styled.div`
   width: 55%;
   height: 100%;
+  max-width: 700px;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  padding-right: 16px;
+
+  button {
+    margin-left: 32px;
+    width: 160px;
+    padding: 12px 0;
+    border-radius: 32px;
+    background: #3b49b8;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 800;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
+  }
+
+  h1 {
+    padding: 32px;
+    padding-bottom: 16px;
+    font-weight: 300;
+    font-size: 48px;
+    text-align: left;
+    margin: 0 auto;
+    color: white;
+  }
+  p {
+    color: white;
+    text-align: left;
+    padding-left: 32px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  @media (max-width: ${breakPointOne}) {
+    width: 95%;
+    margin-bottom: 64px;
+    padding-right: 0px;
+  }
+`;
+
+export const RightPanel = styled.div`
+  width: 44%;
+  max-width: 600px;
+  margin-right: 32px;
+  height: 100%;
+  min-height: 400px;
+  background: rgba(0, 0, 0, 0.2);
   max-width: 600px;
   display: flex;
   justify-content: start;
@@ -149,4 +226,22 @@ export const LeftPanel = styled.div`
     font-size: 16px;
     line-height: 24px;
   }
+
+  @media (max-width: ${breakPointOne}) {
+    width: 95%;
+    max-width: 700px;
+    margin-bottom: 128px;
+    margin-right: 0px;
+  }
+`;
+
+export const InfoSectionWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  clip-path: polygon(50% 0, 100% 8%, 100% 100%, 50% 100%, 0 100%, 0 8%);
+  margin-top: -80px;
+  z-index: 10;
+  background: white;
+  box-sizing: border-box;
+  padding: 80px 32px;
 `;
