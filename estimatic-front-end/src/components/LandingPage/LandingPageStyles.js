@@ -238,11 +238,63 @@ export const RightPanel = styled.div`
 
 export const InfoSectionWrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   clip-path: polygon(50% 0, 100% 8%, 100% 100%, 50% 100%, 0 100%, 0 8%);
   margin-top: -80px;
   z-index: 10;
   background: white;
   box-sizing: border-box;
-  padding: 80px 32px;
+  padding: 120px 32px;
+  @media (max-width: ${breakPointOne}) {
+    clip-path: polygon(50% 0, 100% 4%, 100% 100%, 50% 100%, 0 100%, 0 4%);
+  }
+`;
+
+export const InfoSectionThreeColumn = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  max-width: ${maxScreenWidth};
+  margin: auto;
+
+  p {
+    padding-top: 32px;
+  }
+
+  @media (max-width: ${breakPointOne}) {
+    flex-direction: column;
+  }
+`;
+
+export const ItemWrapper = styled.div`
+  width: 33%;
+  box-sizing: border-box;
+  padding: 32px;
+  background: rgba(0, 0, 0, 0.04);
+  margin: 8px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 4px solid rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+
+  h4 {
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  p {
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0 auto;
+    padding-top: 0;
+  }
+
+  @media (max-width: ${breakPointOne}) {
+    width: 100%;
+  }
 `;
