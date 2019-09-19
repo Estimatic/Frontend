@@ -2,6 +2,7 @@ import React from "react";
 import { BasicHero } from "./LandingPageStyles";
 import NavBar from "./parts/NavBar";
 import InfoSection from "./parts/InfoSection";
+import PricingSection from "./parts/PricingSection";
 import { ReactComponent as HousePic } from "../../imgs/undraw_revenue_3osh.svg";
 
 import { LeftPanel, RightPanel } from "./LandingPageStyles";
@@ -25,7 +26,8 @@ export default function LandingPage() {
           <HousePic style={{ width: "100%", margin: "auto" }} />
         </RightPanel>
       </BasicHero>
-      <InfoSection></InfoSection>
+      <InfoSection />
+      <PricingSection />
     </div>
   );
 }

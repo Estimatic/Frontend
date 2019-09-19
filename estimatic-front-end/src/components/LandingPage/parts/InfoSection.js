@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import {
   InfoSectionWrapper,
   InfoSectionThreeColumn,
-  ItemWrapper
+  ItemWrapper,
+  AboutHeader
 } from "../LandingPageStyles";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,6 +17,9 @@ export default class InfoSection extends Component {
   render() {
     return (
       <InfoSectionWrapper>
+        <AboutHeader>
+          <h4>How it Works</h4>
+        </AboutHeader>
         <InfoSectionThreeColumn>
           <ItemWrapper>
             <FontAwesomeIcon

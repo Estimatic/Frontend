@@ -298,3 +298,45 @@ export const ItemWrapper = styled.div`
     width: 100%;
   }
 `;
+
+export const AboutHeader = styled.div`
+  margin: auto;
+  margin-bottom: 32px;
+  width: 100%;
+  max-width: ${maxScreenWidth};
+  h4 {
+    font-size: 36px;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+    padding: 0;
+  }
+`;
+
+export const InfoSectionTwoWrapper = styled.div`
+  width: 100%;
+  min-height: 300px;
+  background: rgba(0, 0, 0, 0.04);
+`;
+
+export const InfoTwoInnerWrapper = styled.div`
+  color: black;
+  max-width: ${maxScreenWidth};
+  padding: 32px;
+  margin: auto;
+  h4 {
+    font-size: 36px;
+    color: ${companyColor};
+    margin: 0;
+    margin-bottom: 48px;
+    padding: 0;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 24px;
+    width: 50%;
+    @media (max-width: ${breakPointOne}) {
+      width: 70%;
+    }
+  }
+`;
