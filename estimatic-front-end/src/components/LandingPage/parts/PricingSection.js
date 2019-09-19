@@ -7,7 +7,7 @@ import {
 export default class PricingSection extends Component {
   render() {
     return (
-      <InfoSectionTwoWrapper>
+      <InfoSectionTwoWrapper id="pricing">
         <InfoTwoInnerWrapper>
           <h4>How Much Does it Cost?</h4>
 

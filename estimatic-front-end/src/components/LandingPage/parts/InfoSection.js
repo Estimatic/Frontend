@@ -16,7 +16,7 @@ import {
 export default class InfoSection extends Component {
   render() {
     return (
-      <InfoSectionWrapper>
+      <InfoSectionWrapper id="infoSection">
         <AboutHeader>
           <h4>How it Works</h4>
         </AboutHeader>

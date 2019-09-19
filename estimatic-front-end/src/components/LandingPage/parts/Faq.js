@@ -11,7 +11,7 @@ import {
 export default class Faq extends Component {
   render() {
     return (
-      <FAQWrapper>
+      <FAQWrapper id="faq">
         <FAQItem flexDirection="flex-start">
           <FAQItemTop>
             <FontAwesomeIcon icon={faQuestion} size="3x" />

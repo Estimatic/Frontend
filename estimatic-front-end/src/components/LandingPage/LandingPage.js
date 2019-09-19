@@ -5,6 +5,7 @@ import InfoSection from "./parts/InfoSection";
 import PricingSection from "./parts/PricingSection";
 import Faq from "./parts/Faq";
 import { ReactComponent as HousePic } from "../../imgs/undraw_revenue_3osh.svg";
+import jump from "jump.js";
 
 import { LeftPanel, RightPanel } from "./LandingPageStyles";
 
@@ -12,7 +13,7 @@ export default function LandingPage() {
   return (
     <div>
       <NavBar />
-      <BasicHero className="App">
+      <BasicHero id="landingHero" className="App">
         <LeftPanel>
           <h1>Build and beautify your estimates</h1>
           <p>
@@ -21,7 +22,13 @@ export default function LandingPage() {
             easier for you to convay quality and to increase your chances of
             selling the higher quality product.
           </p>
-          <button>Learn More</button>
+          <button
+            onClick={() => {
+              jump("#infoSection");
+            }}
+          >
+            Learn More
+          </button>
         </LeftPanel>
         <RightPanel>
           <HousePic style={{ width: "100%", margin: "auto" }} />
