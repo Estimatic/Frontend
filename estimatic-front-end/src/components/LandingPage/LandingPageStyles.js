@@ -5,6 +5,8 @@ const breakPointTwo = "640px";
 
 const maxScreenWidth = "1300px";
 const companyColor = "#3B49B8";
+const companyRed = "#BF273A";
+const companyGreen = "#5A9493";
 
 export const BasicHero = styled.div`
   width: 100vw;
@@ -271,14 +273,13 @@ export const ItemWrapper = styled.div`
   width: 33%;
   box-sizing: border-box;
   padding: 32px;
-  background: rgba(0, 0, 0, 0.04);
+  background: rgba(0, 0, 0, 0.02);
   margin: 8px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-bottom: 4px solid rgba(0, 0, 0, 0.2);
   border-radius: 2px;
 
   h4 {
@@ -314,7 +315,6 @@ export const AboutHeader = styled.div`
 
 export const InfoSectionTwoWrapper = styled.div`
   width: 100%;
-  min-height: 300px;
   background: rgba(0, 0, 0, 0.04);
 `;
 
@@ -323,20 +323,71 @@ export const InfoTwoInnerWrapper = styled.div`
   max-width: ${maxScreenWidth};
   padding: 32px;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   h4 {
     font-size: 36px;
-    color: ${companyColor};
+    color: rgba(0, 0, 0, 0.5);
     margin: 0;
-    margin-bottom: 48px;
+    margin-bottom: 24px;
     padding: 0;
   }
 
   p {
     font-size: 16px;
     line-height: 24px;
-    width: 50%;
+    width: 60%;
     @media (max-width: ${breakPointOne}) {
-      width: 70%;
+      width: 80%;
     }
   }
+`;
+
+export const FAQWrapper = styled.div`
+  padding: 32px;
+  min-height: 900px;
+  background: rgba(0, 0, 0, 0.04);
+  background: white;
+`;
+
+export const FAQItem = styled.div`
+  max-width: 1100px;
+  box-sizing: border-box;
+  min-height: 150px;
+  border-radius: 16px;
+  padding: 36px 32px;
+  margin: 8px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: ${props => props.flexDirection || "flex-start"};
+  color: ${companyColor};
+
+  @media (max-width: ${breakPointOne}) {
+    align-items: center;
+    width: 100%;
+  }
+
+  h4 {
+    font-size: 24px;
+    margin: 0 16px;
+    padding: 0;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 24px;
+    width: 70%;
+    max-width: 800px;
+    @media (max-width: ${breakPointOne}) {
+      width: 90%;
+    }
+  }
+`;
+
+export const FAQItemTop = styled.div`
+  display: flex;
+  align-items: center;
 `;
