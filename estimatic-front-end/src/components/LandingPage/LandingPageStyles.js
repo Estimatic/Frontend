@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const breakPointOne = "900px";
-const breakPointTwo = "640px";
+export const breakPointOne = "900px";
+export const breakPointTwo = "640px";
 
 const maxScreenWidth = "1300px";
 const companyColor = "#3B49B8";
@@ -390,4 +390,29 @@ export const FAQItem = styled.div`
 export const FAQItemTop = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const BusinessesInnerWrapper = styled.div`
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+`;
+
+export const BusinessesWrapper = styled.div`
+  padding: 32px;
+  background: ${companyColor};
+  color: #999999;
+
+  h4 {
+    font-weight: 600;
+    font-size: 28px;
+    text-align: center;
+    @media (max-width: ${breakPointTwo}) {
+      font-size: 20px;
+      margin: 8px auto;
+    }
+  }
 `;

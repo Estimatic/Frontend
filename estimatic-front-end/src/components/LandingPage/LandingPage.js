@@ -3,6 +3,8 @@ import { BasicHero } from "./LandingPageStyles";
 import NavBar from "./parts/NavBar";
 import InfoSection from "./parts/InfoSection";
 import PricingSection from "./parts/PricingSection";
+import Businesses from "./parts/Businesses";
+
 import Faq from "./parts/Faq";
 import { ReactComponent as HousePic } from "../../imgs/undraw_revenue_3osh.svg";
 import jump from "jump.js";
@@ -37,6 +39,7 @@ export default function LandingPage() {
       <InfoSection />
       <PricingSection />
       <Faq />
+      <Businesses />
     </div>
   );
 }
