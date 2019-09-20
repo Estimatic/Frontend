@@ -416,3 +416,76 @@ export const BusinessesWrapper = styled.div`
     }
   }
 `;
+
+export const CallToActionWrapper = styled.div`
+  padding: 64px 32px;
+  background: rgba(0, 0, 0, 0.04);
+  color: black;
+
+  h4 {
+    font-weight: 600;
+    font-size: 32px;
+    margin: 0;
+    text-align: center;
+    @media (max-width: ${breakPointTwo}) {
+      font-size: 28px;
+      margin: 8px auto;
+    }
+  }
+`;
+
+export const CallToActionInnerWrapper = styled.div`
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+
+  button {
+    margin-left: 32px;
+    margin-top: 32px;
+    width: 200px;
+    padding: 16px 0;
+    border-radius: 32px;
+    background: ${companyColor};
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 800;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
+  }
+  button:hover {
+    background: white;
+    color: ${companyColor};
+    border: 1px solid ${companyColor};
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+`;
+
+export const FooterWrapper = styled.div`
+  padding: 16px 32px;
+  background: rgba(0, 0, 0, 0.1);
+  color: black;
+`;
+
+export const FooterInnerWrapper = styled.div`
+  width: 100%;
+  max-width: ${maxScreenWidth};
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: auto;
+
+  p {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.4);
+    margin: 8px;
+    cursor: pointer;
+  }
+  p:hover {
+    color: ${companyColor};
+  }
+`;

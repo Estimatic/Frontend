@@ -4,6 +4,8 @@ import NavBar from "./parts/NavBar";
 import InfoSection from "./parts/InfoSection";
 import PricingSection from "./parts/PricingSection";
 import Businesses from "./parts/Businesses";
+import FinalCallToAction from "./parts/FinalCallToAction";
+import LandingFooter from "./parts/LandingFooter";
 
 import Faq from "./parts/Faq";
 import { ReactComponent as HousePic } from "../../imgs/undraw_revenue_3osh.svg";
@@ -40,6 +42,8 @@ export default function LandingPage() {
       <PricingSection />
       <Faq />
       <Businesses />
+      <FinalCallToAction />
+      <LandingFooter />
     </div>
   );
 }
