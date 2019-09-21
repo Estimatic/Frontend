@@ -11,7 +11,7 @@ export default function FinalCallToAction(props) {
         <h4>All of that sound good?</h4>
         <button
           onClick={e => {
-            props.history.push("/login");
+            props.history.push("/signup");
           }}
         >
           Sign Up Now

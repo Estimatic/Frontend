@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import styled from "styled-components";
 import {
   LeftPanel,
   RightPanel,
@@ -13,6 +13,10 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Email from "@material-ui/icons/Email";
 import Lock from "@material-ui/icons/Lock";
+
+import { ReactComponent as HousePic } from "../../imgs/undraw_revenue_3osh.svg";
+
+import { breakPointOne, breakPointTwo } from "./LoginStyles";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -30,12 +34,14 @@ export default function Login(props) {
     <LoginWrapper>
       <LeftPanel>
         <h3
+          style={{ zIndex: "10" }}
           onClick={() => {
             props.history.push("/");
           }}
         >
           estimatic
         </h3>
+        <StyledHousePic />
       </LeftPanel>
       <RightPanel>
         <LoginFormMain>
@@ -104,3 +110,16 @@ export default function Login(props) {
     </LoginWrapper>
   );
 }
+
+const StyledHousePic = styled(HousePic)`
+  width: 100%;
+  max-height: 300px;
+  margin: 32px auto;
+  margin-bottom: 16px;
+  @media (max-width: ${breakPointTwo}) {
+    display: none;
+  }
+  @media (max-width: ${breakPointOne}) {
+    margin-bottom: 0;
+  }
+`;

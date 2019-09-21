@@ -4,6 +4,8 @@ export const breakPointOne = "900px";
 export const breakPointTwo = "640px";
 
 const companyColor = "#3B49B8";
+// const companyRed = "#BF273A";
+// const companyGreen = "#5A9493";
 
 export const LoginWrapper = styled.div`
   display: flex;
@@ -24,6 +26,22 @@ export const LeftPanel = styled.div`
     padding: 0;
     font-size: 32px;
     cursor: pointer;
+  }
+
+  .buttonContainer {
+    width: 176px;
+    margin: auto;
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: ${breakPointTwo}) {
+      display: none;
+    }
+    @media (max-width: ${breakPointOne}) {
+      width: 112px;
+      margin-top: 16px;
+    }
   }
 
   background: linear-gradient(
@@ -129,7 +147,8 @@ export const RightPanel = styled.div`
 `;
 
 export const LoginFormMain = styled.div`
-  margin: 64px auto;
+  margin: auto;
+  margin-top: 136px;
   margin-bottom: 0px;
   width: 90%;
   max-width: 450px;
