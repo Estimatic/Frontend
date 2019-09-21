@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const breakPointOne = "900px";
 export const breakPointTwo = "640px";
 
+const companyColor = "#3B49B8";
+
 export const LoginWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -118,11 +120,72 @@ export const RightPanel = styled.div`
   min-height: 100vh;
   padding: 32px;
   background: rgba(0, 0, 0, 0.04);
-
   @media (max-width: ${breakPointOne}) {
     width: 70vw;
   }
   @media (max-width: ${breakPointTwo}) {
     width: 95vw;
+  }
+`;
+
+export const LoginFormMain = styled.div`
+  margin: 64px auto;
+  margin-bottom: 0px;
+  width: 90%;
+  max-width: 450px;
+  padding: 16px;
+  min-heigh: 600px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.4);
+  max-height: 80vh;
+  overflow: scroll;
+
+  hr {
+    opacity: 0.4;
+  }
+
+  button {
+    margin: 16px;
+    width: 160px;
+    padding: 12px 0;
+    border-radius: 32px;
+    background: linear-gradient(
+      45deg,
+      rgba(62, 132, 197, 1) 33%,
+      rgba(60, 103, 190, 1) 61%,
+      rgba(59, 73, 184, 1) 91%,
+      rgba(59, 73, 184, 1) 93%,
+      rgba(59, 73, 184, 1) 100%
+    );
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 800;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  }
+
+  h4 {
+    font-size: 32px;
+    margin: 0 16px;
+    font-weight: 400;
+  }
+`;
+
+export const ElseSignUp = styled.div`
+  margin: auto;
+  color: rgba(0, 0, 0, 0.4);
+  width: 90%;
+  max-width: 450px;
+  padding: 16px 16px 16px 0;
+  span {
+    text-decoration: underline;
+    color: ${companyColor};
+    cursor: pointer;
+  }
+  p {
+    margin: 0;
+    padding: 0;
   }
 `;

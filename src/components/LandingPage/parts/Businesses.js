@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { breakPointTwo, breakPointOne } from "../LandingPageStyles";
+import { breakPointTwo } from "../LandingPageStyles";
 import { ReactComponent as FakeLogoOne } from "../../../imgs/fake_logo_1.svg";
 import { ReactComponent as FakeLogoTwo } from "../../../imgs/fake_logo_2.svg";
 import { ReactComponent as FakeLogoThree } from "../../../imgs/fake_logo_3.svg";

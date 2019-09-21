@@ -5,8 +5,8 @@ export const breakPointTwo = "640px";
 
 const maxScreenWidth = "1300px";
 const companyColor = "#3B49B8";
-const companyRed = "#BF273A";
-const companyGreen = "#5A9493";
+// const companyRed = "#BF273A";
+// const companyGreen = "#5A9493";
 
 export const BasicHero = styled.div`
   width: 100vw;
@@ -164,6 +164,7 @@ export const NavBarInnerWrapper = styled.div`
     border-radius: 32px;
     font-weight: 600;
     cursor: pointer;
+    margin: auto;
   }
   button:hover {
     background: ${companyColor};
