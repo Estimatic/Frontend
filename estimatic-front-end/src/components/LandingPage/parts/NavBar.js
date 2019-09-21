@@ -2,7 +2,7 @@ import React from "react";
 import { NavBarWrapper, NavBarInnerWrapper } from "../LandingPageStyles";
 import jump from "jump.js";
 
-export default function NavBar() {
+export default function NavBar(props) {
   return (
     <NavBarWrapper>
       <NavBarInnerWrapper>
@@ -35,7 +35,13 @@ export default function NavBar() {
           >
             FAQ
           </li>
-          <button>login/sign up</button>
+          <button
+            onClick={e => {
+              props.history.push("/login");
+            }}
+          >
+            login/sign up
+          </button>
         </ul>
       </NavBarInnerWrapper>
     </NavBarWrapper>

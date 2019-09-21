@@ -13,10 +13,10 @@ import jump from "jump.js";
 
 import { LeftPanel, RightPanel } from "./LandingPageStyles";
 
-export default function LandingPage() {
+export default function LandingPage(props) {
   return (
     <div>
-      <NavBar />
+      <NavBar history={props.history} />
       <BasicHero id="landingHero" className="App">
         <LeftPanel>
           <h1>Build and beautify your estimates</h1>
@@ -42,8 +42,8 @@ export default function LandingPage() {
       <PricingSection />
       <Faq />
       <Businesses />
-      <FinalCallToAction />
-      <LandingFooter />
+      <FinalCallToAction history={props.history} />
+      <LandingFooter history={props.history} />
     </div>
   );
 }

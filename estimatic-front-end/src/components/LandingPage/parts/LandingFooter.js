@@ -2,7 +2,7 @@ import React from "react";
 import { FooterWrapper, FooterInnerWrapper } from "../LandingPageStyles";
 import jump from "jump.js";
 
-export default function LandingFooter() {
+export default function LandingFooter(props) {
   return (
     <FooterWrapper>
       <FooterInnerWrapper>
@@ -14,8 +14,13 @@ export default function LandingFooter() {
           about
         </p>
         <p>contact</p>
-        <p>login</p>
-        <p>sign up</p>
+        <p
+          onClick={e => {
+            props.history.push("/login");
+          }}
+        >
+          login/sign up
+        </p>
       </FooterInnerWrapper>
     </FooterWrapper>
   );
