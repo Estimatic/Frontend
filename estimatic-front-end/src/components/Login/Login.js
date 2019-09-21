@@ -1,9 +1,20 @@
 import React from "react";
 
-export default function Login() {
+import { LeftPanel, RightPanel, LoginWrapper } from "./LoginStyles";
+
+export default function Login(props) {
   return (
-    <div>
-      <h1>Login</h1>
-    </div>
+    <LoginWrapper>
+      <LeftPanel>
+        <h3
+          onClick={e => {
+            props.history.push("/");
+          }}
+        >
+          estimatic
+        </h3>
+      </LeftPanel>
+      <RightPanel />
+    </LoginWrapper>
   );
 }

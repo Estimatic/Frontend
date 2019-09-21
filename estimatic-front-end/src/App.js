@@ -14,7 +14,7 @@ class App extends React.Component {
       <div>
         <Route exact path="/" render={props => <LandingPage {...props} />} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/login" component={Login} />
+        <Route path="/login" render={props => <Login {...props} />} />
       </div>
     );
   }

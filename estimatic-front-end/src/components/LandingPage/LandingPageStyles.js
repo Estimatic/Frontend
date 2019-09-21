@@ -405,6 +405,7 @@ export const BusinessesWrapper = styled.div`
   padding: 32px;
   background: ${companyColor};
   color: #999999;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
 
   h4 {
     font-weight: 600;
@@ -455,7 +456,7 @@ export const CallToActionInnerWrapper = styled.div`
     cursor: pointer;
     font-size: 14px;
     font-weight: 800;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
   }
   button:hover {
     background: white;
