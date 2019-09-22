@@ -68,8 +68,10 @@ export const createNewAccountAndCompany = (companyInfo, userInfo) => {
       };
 
       dispatch({ type: USER_CREATION_SUCCESS, payload: newCompanyAndUser });
+      return true;
     } catch (err) {
       dispatch({ type: USER_CREATION_FAIL, payload: err });
+      return false;
     }
   };
 };

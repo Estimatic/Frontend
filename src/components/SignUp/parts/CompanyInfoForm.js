@@ -46,13 +46,22 @@ function CompanyInfoform(props) {
             city,
             address
           };
-          //puts info into reduxstate
+          //puts info into redux state
           props.handleCompanyInfoSubmission(newCompany);
 
           const newUser = props.signingUpUser;
           // handles creation
-          props.createNewAccountAndCompany(newCompany, newUser);
-          props.history.push("/login");
+          props.createNewAccountAndCompany(newCompany, newUser).then(res => {
+            if (res) {
+              // if successful user creation
+              props.history.push("/login");
+              alert("We've successfully created your account!");
+            } else {
+              alert(
+                "There was a problem signing you up. This was likely caused by attempting to create an account that already exists."
+              );
+            }
+          });
         }}
       >
         <div className={classes.margin}>
