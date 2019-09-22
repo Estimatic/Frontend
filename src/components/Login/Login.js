@@ -55,7 +55,6 @@ function Login(props) {
           <form
             onSubmit={e => {
               e.preventDefault();
-              console.log(email, password);
               setEmail("");
               setPassword("");
             }}

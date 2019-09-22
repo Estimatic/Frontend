@@ -23,6 +23,7 @@ axios.interceptors.request.use(
 export const handleUserInfoSubmission = userInfo => dispatch => {
   // generate random 6 digit number and set it to the user info dispatch
   const emailConfirmationNumber = Math.floor(100000 + Math.random() * 900000);
+  console.log(emailConfirmationNumber);
   userInfo.emailConfirmationNumber = emailConfirmationNumber;
   dispatch({ type: SET_USER_INFO_SUBMISSION, payload: userInfo });
 };
@@ -54,7 +55,6 @@ export const createNewAccountAndCompany = (companyInfo, userInfo) => {
       );
 
       const owner_id = newUser.data.user._id;
-      console.log("this is what we have for the owner_id", owner_id);
       // update company owner with that user ID
       const updatedCompany = await axios.put(
         `${dbEndpoint}/api/company/${companyId}`,
@@ -62,12 +62,10 @@ export const createNewAccountAndCompany = (companyInfo, userInfo) => {
           owner_id
         }
       );
-      console.log("the company has been updated", updatedCompany);
       const newCompanyAndUser = {
         updatedCompany,
         newUser
       };
-      console.log("user creation success!", newCompanyAndUser);
 
       dispatch({ type: USER_CREATION_SUCCESS, payload: newCompanyAndUser });
     } catch (err) {
