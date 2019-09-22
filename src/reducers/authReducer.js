@@ -1,10 +1,12 @@
 import {
   SET_USER_INFO_SUBMISSION,
-  SET_COMPANY_INFO_SUBMISSION
+  SET_COMPANY_INFO_SUBMISSION,
+  USER_CREATION_SUCCESS
 } from "../actions/auth";
 
 const initialState = {
   user: {},
+  company: {},
   signingUpUser: {},
   settingUpCompany: {},
   emailConfirmationNumber: null
@@ -28,7 +30,7 @@ const authReducer = (state = initialState, action) => {
           password
         },
         settingUpCompany: {
-          companyName
+          name: companyName
         },
         emailConfirmationNumber
       };
@@ -44,6 +46,13 @@ const authReducer = (state = initialState, action) => {
           city,
           address
         }
+      };
+
+    case USER_CREATION_SUCCESS:
+      return {
+        ...state,
+        user: { ...action.payload.newUser.data.user },
+        company: { ...action.payload.updatedCompany.data }
       };
 
     default:

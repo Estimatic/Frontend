@@ -16,6 +16,7 @@ const useStyles = makeStyles(theme => ({
 
 function VerifyEmailForm(props) {
   useEffect(() => {
+    console.log(props);
     setCorrectVerificationCode(`${props.emailConfirmationNumber}`);
   }, [props]);
 

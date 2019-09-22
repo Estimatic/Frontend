@@ -9,7 +9,10 @@ import Phone from "@material-ui/icons/Phone";
 import People from "@material-ui/icons/People";
 import House from "@material-ui/icons/House";
 
-import { handleCompanyInfoSubmission } from "../../../actions/auth";
+import {
+  handleCompanyInfoSubmission,
+  createNewAccountAndCompany
+} from "../../../actions/auth";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -35,16 +38,20 @@ function CompanyInfoform(props) {
       <form
         onSubmit={e => {
           e.preventDefault();
-          console.log("completing sign up");
           const newCompany = {
+            name: props.settingUpCompany.name,
             phone,
-            numEmployees,
-            homeState,
+            num_employees: numEmployees,
+            state: homeState,
             city,
             address
           };
-
+          //puts info into reduxstate
           props.handleCompanyInfoSubmission(newCompany);
+
+          const newUser = props.signingUpUser;
+          // handles creation
+          props.createNewAccountAndCompany(newCompany, newUser);
           props.history.push("/login");
         }}
       >
@@ -158,6 +165,6 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
     mapStateToProps,
-    { handleCompanyInfoSubmission }
+    { handleCompanyInfoSubmission, createNewAccountAndCompany }
   )(CompanyInfoform)
 );
