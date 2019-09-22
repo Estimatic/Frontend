@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
 import {
   LeftPanel,
@@ -24,7 +25,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Login(props) {
+function Login(props) {
+  useEffect(() => {
+    console.log(props.auth);
+  }, [props]);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -110,6 +115,17 @@ export default function Login(props) {
     </LoginWrapper>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    auth: { ...state.auth }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(Login);
 
 const StyledHousePic = styled(HousePic)`
   width: 100%;

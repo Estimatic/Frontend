@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+
 import {
   LeftPanel,
   RightPanel,
@@ -9,6 +10,8 @@ import {
 import { ReactComponent as HousePic } from "../../imgs/undraw_revenue_3osh.svg";
 import { breakPointOne, breakPointTwo } from "./SignUpStyles";
 import BasicInfoForm from "./parts/BasicInfoForm";
+import VerifyEmailForm from "./parts/VerifyEmailForm";
+import CompanyInfoform from "./parts/CompanyInfoForm";
 
 export default function SignUp(props) {
   const [curStep, setCurStep] = useState(1);
@@ -27,8 +30,13 @@ export default function SignUp(props) {
         <StyledHousePic />
       </LeftPanel>
       <RightPanel>
-        {/* add modals here */}
-        {curStep === 1 ? <BasicInfoForm setCurStep={setCurStep} /> : null}
+        {curStep === 1 ? (
+          <BasicInfoForm setCurStep={setCurStep} />
+        ) : curStep === 2 ? (
+          <VerifyEmailForm setCurStep={setCurStep} />
+        ) : curStep === 3 ? (
+          <CompanyInfoform />
+        ) : null}
         <ElseSignUp>
           <p>
             already have an account?{" "}

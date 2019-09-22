@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+
+import { handleUserInfoSubmission } from "../../../actions/auth";
 
 import { LoginFormMain } from "../SignUpStyles";
 import TextField from "@material-ui/core/TextField";
@@ -16,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function BasicInfoForm(props) {
+function BasicInfoForm(props) {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,12 +42,12 @@ export default function BasicInfoForm(props) {
           };
 
           if (password === verifyPass) {
-            console.log(newUserObject);
             setEmail("");
             setPassword("");
             setFullName("");
             setVerifyPass("");
             setCompanyName("");
+            props.handleUserInfoSubmission(newUserObject);
             setTimeout(() => {
               props.setCurStep(2);
             }, 500);
@@ -148,3 +151,14 @@ export default function BasicInfoForm(props) {
     </LoginFormMain>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    ...state
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { handleUserInfoSubmission }
+)(BasicInfoForm);

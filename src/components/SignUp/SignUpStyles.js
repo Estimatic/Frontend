@@ -152,7 +152,7 @@ export const RightPanel = styled.div`
 
 export const LoginFormMain = styled.div`
   margin: auto;
-  margin-top: 80px;
+  margin-top: 64px;
   margin-bottom: 0px;
   width: 90%;
   max-width: 450px;
@@ -193,6 +193,10 @@ export const LoginFormMain = styled.div`
     font-size: 32px;
     margin: 0 16px;
     font-weight: 400;
+  }
+
+  p {
+    margin: 16px;
   }
 `;
 
