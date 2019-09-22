@@ -4,6 +4,9 @@ import {
   USER_CREATION_SUCCESS
 } from "../actions/auth";
 
+// user and company will be used whenever logging in or after creating an account
+// signingUpUser and settingUpcompany are used for storing info in sign up forms for submission
+// emailConfirmationNumber stores number that is sent to email to be confirmed
 const initialState = {
   user: {},
   company: {},

@@ -9,6 +9,13 @@ import Phone from "@material-ui/icons/Phone";
 import People from "@material-ui/icons/People";
 import House from "@material-ui/icons/House";
 
+// swal covers the success or failure alerts
+import Swal from "sweetalert2";
+// import withReactContent from "sweetalert2-react-content";
+
+// // instance of sweet alert
+// const MySwal = withReactContent(Swal);
+
 import {
   handleCompanyInfoSubmission,
   createNewAccountAndCompany
@@ -55,10 +62,12 @@ function CompanyInfoform(props) {
             if (res) {
               // if successful user creation
               props.history.push("/login");
-              alert("We've successfully created your account!");
+              Swal.fire("Success!", "We've got you all set up!", "success");
             } else {
-              alert(
-                "There was a problem signing you up. This was likely caused by attempting to create an account that already exists."
+              Swal.fire(
+                "hmm...",
+                "It seems as if there was an issue setting up your account. Either this email address is already in use, or you missed a bit of information. Please check your input to make sure you've got everything right!",
+                "warning"
               );
             }
           });

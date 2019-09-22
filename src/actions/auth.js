@@ -28,10 +28,14 @@ export const handleUserInfoSubmission = userInfo => dispatch => {
   dispatch({ type: SET_USER_INFO_SUBMISSION, payload: userInfo });
 };
 
+// pushed company info to state
 export const handleCompanyInfoSubmission = companyInfo => dispatch => {
   dispatch({ type: SET_COMPANY_INFO_SUBMISSION, payload: companyInfo });
 };
 
+// creates a new account
+// firest creates a company, then a user, then updates the
+// companies owner_id with the users id
 export const createNewAccountAndCompany = (companyInfo, userInfo) => {
   return async dispatch => {
     dispatch({ type: START_USER_CREATION });
