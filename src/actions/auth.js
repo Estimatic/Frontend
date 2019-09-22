@@ -8,6 +8,9 @@ export const START_USER_CREATION = "START_USER_CREATION";
 export const USER_CREATION_SUCCESS = "USER_CREATION_SUCCESS";
 export const USER_CREATION_FAIL = "USER_CREATION_FAIL";
 
+export const USER_LOGIN_FAIL = "USER_LOGIN_FAIL";
+export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
+
 // sets auth header automatically
 axios.interceptors.request.use(
   function(config) {
@@ -75,6 +78,37 @@ export const createNewAccountAndCompany = (companyInfo, userInfo) => {
       return true;
     } catch (err) {
       dispatch({ type: USER_CREATION_FAIL, payload: err });
+      return false;
+    }
+  };
+};
+
+export const loginUser = user => {
+  return async dispatch => {
+    try {
+      const loggedInUser = await axios.post(
+        `${dbEndpoint}/api/auth/login`,
+        user
+      );
+
+      console.log(loggedInUser);
+
+      // if user successfulyl logged in
+      if (loggedInUser.data.token) {
+        localStorage.setItem("token", loggedInUser.data.token);
+        dispatch({ type: USER_LOGIN_SUCCESS, payload: loggedInUser.data.user });
+
+        console.log("successful login");
+        return true;
+      } else {
+        dispatch({ type: USER_LOGIN_FAIL });
+        console.log("failed login");
+
+        return false;
+      }
+    } catch (err) {
+      dispatch({ type: USER_LOGIN_FAIL });
+      console.log("failed login");
       return false;
     }
   };

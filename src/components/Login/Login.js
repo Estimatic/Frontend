@@ -15,9 +15,13 @@ import Grid from "@material-ui/core/Grid";
 import Email from "@material-ui/icons/Email";
 import Lock from "@material-ui/icons/Lock";
 
+import Swal from "sweetalert2";
+
 import { ReactComponent as HousePic } from "../../imgs/undraw_revenue_3osh.svg";
 
 import { breakPointOne, breakPointTwo } from "./LoginStyles";
+
+import { loginUser } from "../../actions/auth";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -55,8 +59,22 @@ function Login(props) {
           <form
             onSubmit={e => {
               e.preventDefault();
-              setEmail("");
-              setPassword("");
+              props.loginUser({ email, password }).then(loggedIn => {
+                if (loggedIn) {
+                  Swal.fire(
+                    "Success!",
+                    "Thanks for choosing Estimatic!",
+                    "success"
+                  );
+                  props.history.push("/app");
+                } else {
+                  Swal.fire(
+                    "Oops!",
+                    "Invalid credentials! Please try again!",
+                    "warning"
+                  );
+                }
+              });
             }}
           >
             <div className={classes.margin}>
@@ -123,7 +141,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { loginUser }
 )(Login);
 
 const StyledHousePic = styled(HousePic)`

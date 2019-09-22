@@ -11,10 +11,6 @@ import House from "@material-ui/icons/House";
 
 // swal covers the success or failure alerts
 import Swal from "sweetalert2";
-// import withReactContent from "sweetalert2-react-content";
-
-// // instance of sweet alert
-// const MySwal = withReactContent(Swal);
 
 import {
   handleCompanyInfoSubmission,
