@@ -1,13 +1,28 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { decodeAndRetrieveUserProfile } from "../../actions/auth";
 
 import { connect } from "react-redux";
 
-function Dashboard(props) {
-  useEffect(() => {
-    console.log(props);
-  }, [props]);
+class Dashboard extends React.Component {
+  componentDidMount = () => {
+    this.props.decodeAndRetrieveUserProfile();
+  };
 
-  return <div>Welcome {props.user.full_name || "User"}</div>;
+  render() {
+    return (
+      <div>
+        <p>Welcome {this.props.user.full_name}</p>
+        <button
+          onClick={e => {
+            localStorage.removeItem("token");
+            this.props.history.push("/");
+          }}
+        >
+          logout
+        </button>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = state => {
@@ -18,5 +33,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { decodeAndRetrieveUserProfile }
 )(Dashboard);

@@ -11,6 +11,8 @@ export const USER_CREATION_FAIL = "USER_CREATION_FAIL";
 export const USER_LOGIN_FAIL = "USER_LOGIN_FAIL";
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 
+export const USER_OPENED_DASHBOARD = "USER_OPENED_DASHBOARD";
+
 // sets auth header automatically
 axios.interceptors.request.use(
   function(config) {
@@ -91,8 +93,6 @@ export const loginUser = user => {
         user
       );
 
-      console.log(loggedInUser);
-
       // if user successfulyl logged in
       if (loggedInUser.data.token) {
         localStorage.setItem("token", loggedInUser.data.token);
@@ -111,5 +111,14 @@ export const loginUser = user => {
       console.log("failed login");
       return false;
     }
+  };
+};
+
+// for persisting user login
+export const decodeAndRetrieveUserProfile = () => {
+  return async dispatch => {
+    const response = await axios.get(`${dbEndpoint}/api/users/getWithJwt`);
+    console.log("look!", response.data);
+    dispatch({ type: USER_OPENED_DASHBOARD, payload: response.data });
   };
 };
