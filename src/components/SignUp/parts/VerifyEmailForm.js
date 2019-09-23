@@ -17,6 +17,8 @@ const useStyles = makeStyles(theme => ({
 function VerifyEmailForm(props) {
   useEffect(() => {
     setCorrectVerificationCode(`${props.emailConfirmationNumber}`);
+    // for staging only
+    setVerificationCode(`${props.emailConfirmationNumber}`);
   }, [props]);
 
   const [verificationCode, setVerificationCode] = useState("");
