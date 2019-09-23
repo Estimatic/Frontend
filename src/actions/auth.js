@@ -122,3 +122,13 @@ export const decodeAndRetrieveUserProfile = () => {
     dispatch({ type: USER_OPENED_DASHBOARD, payload: response.data });
   };
 };
+
+export const sendVerificationEmail = email => {
+  return async dispatch => {
+    const emailSend = await axios.post(
+      `${dbEndpoint}/api/auth/sendVerificationEmail`,
+      email
+    );
+    console.log(emailSend);
+  };
+};

@@ -8,6 +8,8 @@ import Person from "@material-ui/icons/Person";
 
 import { makeStyles } from "@material-ui/core/styles";
 
+import { sendVerificationEmail } from "../../../actions/auth";
+
 const useStyles = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(2)
@@ -19,6 +21,11 @@ function VerifyEmailForm(props) {
     setCorrectVerificationCode(`${props.emailConfirmationNumber}`);
     // for staging only
     setVerificationCode(`${props.emailConfirmationNumber}`);
+
+    props.sendVerificationEmail({
+      emailVerificationNumber: props.emailConfirmationNumber,
+      emailTo: props.signingUpUser.email
+    });
   }, [props]);
 
   const [verificationCode, setVerificationCode] = useState("");
@@ -77,5 +84,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { sendVerificationEmail }
 )(VerifyEmailForm);
