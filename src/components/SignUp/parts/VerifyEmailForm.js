@@ -19,8 +19,8 @@ const useStyles = makeStyles(theme => ({
 function VerifyEmailForm(props) {
   useEffect(() => {
     setCorrectVerificationCode(`${props.emailConfirmationNumber}`);
-    // for staging only
-    setVerificationCode(`${props.emailConfirmationNumber}`);
+    // // for staging only
+    // setVerificationCode(`${props.emailConfirmationNumber}`);
 
     props.sendVerificationEmail({
       emailVerificationNumber: props.emailConfirmationNumber,
@@ -38,7 +38,8 @@ function VerifyEmailForm(props) {
       <hr />
       <p>
         We've sent a verification code to the email that you've provided. Please
-        enter it in the field below.
+        enter it in the field below. Note that this may take a few minutes{" "}
+        {":)"}
       </p>
       <form
         onSubmit={e => {
