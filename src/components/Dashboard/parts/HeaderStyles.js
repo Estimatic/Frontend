@@ -5,7 +5,7 @@ import Close from "@material-ui/icons/Close";
 export const HeaderWrapper = styled.div`
   box-sizing: border-box;
   width: 100%;
-  padding: 12px 0px;
+  padding: 8px 0px;
   display: flex;
   align-items: center;
 

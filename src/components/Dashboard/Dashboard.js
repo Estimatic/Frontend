@@ -34,7 +34,7 @@ class Dashboard extends React.Component {
             curWidth={this.state.sideNavWidth}
             curView={this.state.curView}
           />
-          {/* <h4>Welcome, {this.props.user.full_name}</h4>
+          <h4>Welcome, {this.props.user.full_name}</h4>
           <button
             onClick={e => {
               localStorage.removeItem("token");
@@ -42,7 +42,7 @@ class Dashboard extends React.Component {
             }}
           >
             logout
-          </button> */}
+          </button>
         </RightChannelWrapper>
       </DashboardWrapper>
     );
