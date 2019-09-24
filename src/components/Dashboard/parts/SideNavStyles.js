@@ -5,16 +5,15 @@ import styled from "styled-components";
 
 // const maxScreenWidth = "1300px";
 const companyColor = "#3B49B8";
-const companyGreen = "#5A9493";
 
 export const SideBarWrapper = styled.div`
-  width: 300px;
+  width: ${props => props.sideNavWidth};
   height: 100vh;
   position: sticky;
   top: 0;
   margin: 0;
   padding: 0 12px;
-  background: ${companyGreen};
+  background: ${props => props.bgColor || companyColor};
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
   h4 {
     margin: 0;
@@ -22,7 +21,8 @@ export const SideBarWrapper = styled.div`
     text-align: center;
     font-size: 20px;
     font-weight: 300;
-    color: white;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    color: ${props => props.fontColor || "white"};
+    border-bottom: 1px solid
+      ${props => props.fontColor || "rgba(255, 255, 255, 0.6)"};
   }
 `;

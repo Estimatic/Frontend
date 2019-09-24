@@ -6,8 +6,16 @@ import { connect } from "react-redux";
 
 function SideNav(props) {
   return (
-    <SideBarWrapper>
-      <h4>{props.user.full_name}</h4>
+    <SideBarWrapper sideNavWidth={props.sideNavWidth}>
+      <div
+        style={
+          props.sideNavWidth === "0px"
+            ? { display: "none" }
+            : { display: "block" }
+        }
+      >
+        <h4>{props.user.full_name}</h4>
+      </div>
     </SideBarWrapper>
   );
 }
