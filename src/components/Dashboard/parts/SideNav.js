@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { SideBarWrapper } from "./SideNavStyles";
 
 import { connect } from "react-redux";
 
+import { StyledClose } from "./SideNavStyles";
+
 function SideNav(props) {
-  const [bgColor, seBgColor] = useState("0");
+  const [bgColor, setBgColor] = useState("0");
 
   return (
     <SideBarWrapper bgColor={bgColor} sideNavWidth={props.sideNavWidth}>
+      <StyledClose
+        onClick={e => {
+          props.setSideNavWidth("0px");
+        }}
+      />
       <div
         style={
           props.sideNavWidth === "0px"

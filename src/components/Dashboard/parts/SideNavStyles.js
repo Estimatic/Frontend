@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-// export const breakPointOne = "900px";
+import Close from "@material-ui/icons/Close";
+
+export const breakPointOne = "900px";
 // export const breakPointTwo = "640px";
 
 // const maxScreenWidth = "1300px";
@@ -13,8 +15,12 @@ import styled from "styled-components";
 //***
 //***
 //***
+//the "sideNavWidth" being drilled in is 300 px. for whatever reason, it isnt being set at 300px
+// until the screen is wide enough. its acting as if theres a % width set. Thus why
+// i set the "maxWidth". Weird bug, but this works for the time being.
 export const SideBarWrapper = styled.div`
   width: ${props => props.sideNavWidth};
+  max-width: 230px;
   height: 100vh;
   position: sticky;
   top: 0;
@@ -103,5 +109,25 @@ export const SideBarWrapper = styled.div`
     font-weight: 300;
     color: white;
     border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  }
+
+  @media (max-width: ${breakPointOne}) {
+    position: absolute;
+    z-index: 5;
+    padding: ${props => (props.sideNavWidth === "0px" ? "0" : "0 16px")};
+  }
+`;
+
+export const StyledClose = styled(Close)`
+  transform: scale(0);
+  cursor: pointer;
+  color: white;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  @media (max-width: ${breakPointOne}) {
+    transform: scale(0.9);
   }
 `;

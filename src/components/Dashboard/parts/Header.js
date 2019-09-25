@@ -17,10 +17,10 @@ function Header(props) {
   return (
     <HeaderWrapper>
       <LeftHeaderSection>
-        {props.curWidth === "300px" ? (
+        {props.curWidth === "350px" ? (
           <StyledMenuClose onClick={e => props.setSideNavWidth("0px")} />
         ) : (
-          <StyledMenuOpen onClick={e => props.setSideNavWidth("300px")} />
+          <StyledMenuOpen onClick={e => props.setSideNavWidth("350px")} />
         )}
         <h4>{props.curView}</h4>
       </LeftHeaderSection>

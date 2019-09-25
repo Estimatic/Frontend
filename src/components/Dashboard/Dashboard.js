@@ -11,7 +11,7 @@ import { DashboardWrapper, RightChannelWrapper } from "./DashboardStyles";
 class Dashboard extends React.Component {
   state = {
     curView: "Dashboard",
-    sideNavWidth: "300px"
+    sideNavWidth: "350px"
   };
 
   componentDidMount = () => {
@@ -27,7 +27,10 @@ class Dashboard extends React.Component {
   render() {
     return (
       <DashboardWrapper>
-        <SideNav sideNavWidth={this.state.sideNavWidth} />
+        <SideNav
+          setSideNavWidth={this.setSideNavWidth}
+          sideNavWidth={this.state.sideNavWidth}
+        />
         <RightChannelWrapper>
           <Header
             setSideNavWidth={this.setSideNavWidth}

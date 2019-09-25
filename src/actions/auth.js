@@ -29,7 +29,7 @@ axios.interceptors.request.use(
 export const handleUserInfoSubmission = userInfo => dispatch => {
   // generate random 6 digit number and set it to the user info dispatch
   const emailConfirmationNumber = Math.floor(100000 + Math.random() * 900000);
-  console.log(emailConfirmationNumber);
+
   userInfo.emailConfirmationNumber = emailConfirmationNumber;
   dispatch({ type: SET_USER_INFO_SUBMISSION, payload: userInfo });
 };
@@ -98,18 +98,14 @@ export const loginUser = user => {
       if (loggedInUser.data.token) {
         localStorage.setItem("token", loggedInUser.data.token);
         dispatch({ type: USER_LOGIN_SUCCESS, payload: loggedInUser.data.user });
-
-        console.log("successful login");
         return true;
       } else {
         dispatch({ type: USER_LOGIN_FAIL });
-        console.log("failed login");
 
         return false;
       }
     } catch (err) {
       dispatch({ type: USER_LOGIN_FAIL });
-      console.log("failed login");
       return false;
     }
   };
@@ -119,11 +115,9 @@ export const loginUser = user => {
 export const decodeAndRetrieveUserProfile = () => {
   return async dispatch => {
     const response = await axios.get(`${dbEndpoint}/api/users/getWithJwt`);
-    // console.log("look!", response.data);
     dispatch({ type: USER_OPENED_DASHBOARD, payload: response.data });
     const companyId = response.data["company_id"];
     const company = await axios.get(`${dbEndpoint}/api/company/${companyId}`);
-    console.log(company.data);
     dispatch({ type: COMPANY_RETRIEVED, payload: company.data });
   };
 };
