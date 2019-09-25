@@ -4,10 +4,16 @@ import {
   HeaderWrapper,
   StyledMenuOpen,
   StyledMenuClose,
-  LeftHeaderSection
+  LeftHeaderSection,
+  RightHeaderSection,
+  StyledNotification,
+  StyledQuestion,
+  StyledSettings
 } from "./HeaderStyles";
 
-export default function Header(props) {
+import { connect } from "react-redux";
+
+function Header(props) {
   return (
     <HeaderWrapper>
       <LeftHeaderSection>
@@ -18,16 +24,24 @@ export default function Header(props) {
         )}
         <h4>{props.curView}</h4>
       </LeftHeaderSection>
+
+      <RightHeaderSection>
+        <h5>{props.user.full_name}</h5>
+        <StyledNotification />
+        <StyledQuestion />
+        <StyledSettings />
+      </RightHeaderSection>
     </HeaderWrapper>
   );
 }
 
-// <StyledMenuOpen
-//   onClick={e => {
-//     if (props.curWidth === "300px") {
-//       props.setSideNavWidth("0px");
-//     } else {
-//       props.setSideNavWidth("300px");
-//     }
-//   }}
-// />
+const mapStateToProps = state => {
+  return {
+    user: { ...state.auth.user }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(Header);

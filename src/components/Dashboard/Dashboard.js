@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { decodeAndRetrieveUserProfile } from "../../actions/auth";
 
 import { connect } from "react-redux";

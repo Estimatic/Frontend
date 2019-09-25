@@ -12,6 +12,7 @@ export const USER_LOGIN_FAIL = "USER_LOGIN_FAIL";
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 
 export const USER_OPENED_DASHBOARD = "USER_OPENED_DASHBOARD";
+export const COMPANY_RETRIEVED = "COMPANY_RETRIEVED";
 
 // sets auth header automatically
 axios.interceptors.request.use(
@@ -118,8 +119,12 @@ export const loginUser = user => {
 export const decodeAndRetrieveUserProfile = () => {
   return async dispatch => {
     const response = await axios.get(`${dbEndpoint}/api/users/getWithJwt`);
-    console.log("look!", response.data);
+    // console.log("look!", response.data);
     dispatch({ type: USER_OPENED_DASHBOARD, payload: response.data });
+    const companyId = response.data["company_id"];
+    const company = await axios.get(`${dbEndpoint}/api/company/${companyId}`);
+    console.log(company.data);
+    dispatch({ type: COMPANY_RETRIEVED, payload: company.data });
   };
 };
 

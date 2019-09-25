@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { SideBarWrapper } from "./SideNavStyles";
 
 import { connect } from "react-redux";
 
 function SideNav(props) {
+  const [bgColor, seBgColor] = useState("0");
+
   return (
-    <SideBarWrapper sideNavWidth={props.sideNavWidth}>
+    <SideBarWrapper bgColor={bgColor} sideNavWidth={props.sideNavWidth}>
       <div
         style={
           props.sideNavWidth === "0px"
@@ -14,7 +16,7 @@ function SideNav(props) {
             : { display: "block" }
         }
       >
-        <h4>{props.user.full_name}</h4>
+        <h4>{props.company.name}</h4>
       </div>
     </SideBarWrapper>
   );
@@ -22,7 +24,8 @@ function SideNav(props) {
 
 const mapStateToProps = state => {
   return {
-    user: { ...state.auth.user }
+    user: { ...state.auth.user },
+    company: { ...state.auth.company }
   };
 };
 

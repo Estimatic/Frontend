@@ -97,9 +97,9 @@ export const SideBarWrapper = styled.div`
     linear-gradient(0deg, #2625e3, #0bbaef);
   h4 {
     margin: 4px 0;
-    padding: 16px 8px 20px 0;
+    padding: 24px 8px 20px 0;
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 300;
     color: white;
     border-bottom: 1px solid rgba(255, 255, 255, 0.7);
