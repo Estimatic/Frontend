@@ -30,9 +30,11 @@ class Dashboard extends React.Component {
         );
       })
       .catch(err => {
+        this.props.history.push("/login");
         alert(
           "There was an error retrieving your profile. Plase give us a few minutes and try logging back in!"
         );
+        localStorage.removeItem("token");
       });
   };
 
