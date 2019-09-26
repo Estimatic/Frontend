@@ -10,7 +10,6 @@ import { DashboardWrapper, RightChannelWrapper } from "./DashboardStyles";
 
 class Dashboard extends React.Component {
   state = {
-    curView: "Dashboard",
     sideNavWidth: "350px"
   };
 
@@ -35,7 +34,6 @@ class Dashboard extends React.Component {
           <Header
             setSideNavWidth={this.setSideNavWidth}
             curWidth={this.state.sideNavWidth}
-            curView={this.state.curView}
           />
           <h4>Welcome, {this.props.user.full_name}</h4>
           <button

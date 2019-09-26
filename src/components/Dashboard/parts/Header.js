@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
+import { changeCurTab } from "../../../actions/ui";
 
 import {
   HeaderWrapper,
@@ -14,6 +16,33 @@ import {
 import { connect } from "react-redux";
 
 function Header(props) {
+  // sets dash label for current view
+  const [curView, setCurView] = useState("");
+  useEffect(() => {
+    let curPath = props.history.location.pathname;
+    curPath = curPath.split("/");
+
+    let dashLabel = "";
+
+    if (curPath.length === 2) {
+      dashLabel = "Dashboard";
+    } else {
+      dashLabel = curPath[2];
+      dashLabel = dashLabel
+        .split("")
+        .map((letter, i) => {
+          return i === 0 ? letter.toUpperCase() : letter;
+        })
+        .join("");
+    }
+    setCurView(dashLabel);
+    props.changeCurTab(dashLabel);
+    // disabling passing "props" to dep array
+    // dont see need, as only thing we depend on really is path name
+    // just noting this incase this becomes and error at some point!
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.history.location.pathname]);
+
   return (
     <HeaderWrapper>
       <LeftHeaderSection>
@@ -22,7 +51,7 @@ function Header(props) {
         ) : (
           <StyledMenuOpen onClick={e => props.setSideNavWidth("350px")} />
         )}
-        <h4>{props.curView}</h4>
+        <h4>{curView}</h4>
       </LeftHeaderSection>
 
       <RightHeaderSection>
@@ -43,5 +72,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
-)(Header);
+  { changeCurTab }
+)(withRouter(Header));
