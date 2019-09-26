@@ -22,20 +22,22 @@ class Dashboard extends React.Component {
   };
 
   componentDidMount = () => {
-    this.props
-      .decodeAndRetrieveUserProfile()
-      .then(() => {
-        console.log(
-          "loaded! note that this is in the Dashboard CDM, meaning were requesting data every single time we navigate. Probably should find a fix for this."
-        );
-      })
-      .catch(err => {
-        this.props.history.push("/login");
-        alert(
-          "There was an error retrieving your profile. Plase give us a few minutes and try logging back in!"
-        );
-        localStorage.removeItem("token");
-      });
+    // should fetch makes sure that we only trigger a request for user info when the dash is opened
+    // as opposed to on any rerender.
+    if (this.props.shouldFetch) {
+      this.props
+        .decodeAndRetrieveUserProfile()
+        .then(() => {
+          console.log("--loaded");
+        })
+        .catch(err => {
+          this.props.history.push("/login");
+          alert(
+            "There was an error retrieving your profile. Plase give us a few minutes and try logging back in!"
+          );
+          localStorage.removeItem("token");
+        });
+    }
   };
 
   setSideNavWidth = width => {
@@ -79,7 +81,8 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: { ...state.auth.user }
+    user: { ...state.auth.user },
+    shouldFetch: state.auth.shouldFetch
   };
 };
 

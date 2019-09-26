@@ -11,6 +11,8 @@ import {
 // signingUpUser and settingUpcompany are used for storing info in sign up forms for submission
 // emailConfirmationNumber stores number that is sent to email to be confirmed
 const initialState = {
+  // should fetch controls when or when not to fetch user info
+  shouldFetch: true,
   user: {},
   company: {},
   signingUpUser: {},
@@ -70,6 +72,7 @@ const authReducer = (state = initialState, action) => {
     case USER_OPENED_DASHBOARD:
       return {
         ...state,
+        shouldFetch: false,
         user: { ...action.payload }
       };
 
