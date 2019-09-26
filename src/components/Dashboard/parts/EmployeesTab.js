@@ -85,7 +85,9 @@ function EmployeesTab(props) {
 
   return (
     <ViewWrapper>
-      <h3>Employees Page</h3>
+      <h3>Basic Metrics</h3>
+
+      {/* table element */}
       <Paper className={classes.root}>
         <div className={classes.tableWrapper}>
           <Table stickyHeader>
@@ -145,6 +147,7 @@ function EmployeesTab(props) {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
+      {/* endtable element */}
     </ViewWrapper>
   );
 }
