@@ -13,6 +13,9 @@ import {
   StyledSettings
 } from "./HeaderStyles";
 
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+
 import { connect } from "react-redux";
 
 function Header(props) {
@@ -43,6 +46,16 @@ function Header(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.history.location.pathname]);
 
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <HeaderWrapper>
       <LeftHeaderSection>
@@ -58,7 +71,31 @@ function Header(props) {
         <h5>{props.company.name}</h5>
         <StyledNotification />
         <StyledQuestion />
-        <StyledSettings />
+        <StyledSettings
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+        />
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          style={{ marginTop: "40px" }}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={handleClose}>Account Settings</MenuItem>
+          <MenuItem onClick={handleClose}>Display Settings</MenuItem>
+          <MenuItem
+            onClick={() => {
+              handleClose();
+              localStorage.removeItem("token");
+              props.history.push("/");
+            }}
+          >
+            Logout
+          </MenuItem>
+        </Menu>
       </RightHeaderSection>
     </HeaderWrapper>
   );

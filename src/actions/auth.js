@@ -14,6 +14,8 @@ export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 export const USER_OPENED_DASHBOARD = "USER_OPENED_DASHBOARD";
 export const COMPANY_RETRIEVED = "COMPANY_RETRIEVED";
 
+export const GET_EMPLOYEES_SUCCES = "GET_EMPLOYEES_SUCCES";
+
 // sets auth header automatically
 axios.interceptors.request.use(
   function(config) {

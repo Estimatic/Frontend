@@ -12,7 +12,7 @@ export const breakPointOne = "900px";
 // export const breakPointTwo = "640px";
 
 // const maxScreenWidth = "1300px";
-const companyColor = "#3B49B8";
+// const companyColor = "#3B49B8";
 
 export const SideBarWrapper = styled.div`
   width: ${props => props.sideNavWidth};

@@ -4,7 +4,7 @@ const initialState = {
   curTab: "Dashboard"
 };
 
-const authReducer = (state = initialState, action) => {
+const uiReducer = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_CUR_TAB:
       return {
@@ -19,4 +19,4 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-export default authReducer;
+export default uiReducer;

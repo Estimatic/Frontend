@@ -22,7 +22,18 @@ class Dashboard extends React.Component {
   };
 
   componentDidMount = () => {
-    this.props.decodeAndRetrieveUserProfile();
+    this.props
+      .decodeAndRetrieveUserProfile()
+      .then(() => {
+        console.log(
+          "loaded! note that this is in the Dashboard CDM, meaning were requesting data every single time we navigate. Probably should find a fix for this."
+        );
+      })
+      .catch(err => {
+        alert(
+          "There was an error retrieving your profile. Plase give us a few minutes and try logging back in!"
+        );
+      });
   };
 
   setSideNavWidth = width => {
