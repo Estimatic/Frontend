@@ -55,7 +55,7 @@ function Header(props) {
       </LeftHeaderSection>
 
       <RightHeaderSection>
-        <h5>{props.user.full_name}</h5>
+        <h5>{props.company.name}</h5>
         <StyledNotification />
         <StyledQuestion />
         <StyledSettings />
@@ -66,6 +66,7 @@ function Header(props) {
 
 const mapStateToProps = state => {
   return {
+    company: { ...state.auth.company },
     user: { ...state.auth.user }
   };
 };

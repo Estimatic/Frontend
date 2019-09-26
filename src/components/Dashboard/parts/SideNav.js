@@ -1,16 +1,17 @@
 import React from "react";
-import { SideBarWrapper } from "./SideNavStyles";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import {
+  SideBarWrapper,
   StyledClose,
   StyledDashboard,
   StyledPeople,
   StyledBuild,
   StyledAssignment,
   StyledPermIdentity,
-  StyledMessage
+  StyledMessage,
+  ImgNameWrapper
 } from "./SideNavStyles";
 
 function SideNav(props) {
@@ -28,17 +29,15 @@ function SideNav(props) {
             : { display: "block" }
         }
       >
-        <h4>{props.company.name}</h4>
-        <div
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
-        >
+        <ImgNameWrapper>
           <img
             style={{
-              width: "75px",
-              height: "75px",
+              width: "60px",
+              height: "60px",
               borderRadius: "50%",
               margin: "auto",
-              marginBottom: "16px"
+              marginBottom: "16px",
+              marginTop: "36px"
             }}
             alt="user avatar"
             src={
@@ -46,7 +45,8 @@ function SideNav(props) {
               "https://www.legaseeds.com/assets/user_placeholder.svg"
             }
           />
-        </div>
+          <h5>{props.user.full_name}</h5>
+        </ImgNameWrapper>
       </div>
       {/* ***** */}
       {/* ***** */}
