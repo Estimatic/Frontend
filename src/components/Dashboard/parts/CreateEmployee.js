@@ -47,6 +47,7 @@ function CreateEmployee(props) {
                 props.user["company_id"]
               )
               .then(res => {
+                console.log("res", res);
                 if (res) {
                   Swal.fire(
                     "Success!",

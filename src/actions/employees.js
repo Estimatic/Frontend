@@ -46,7 +46,7 @@ export const inviteNewEmployee = (name, email, senderName, companyId) => {
         `${dbEndpoint}/api/invitation`,
         invite
       );
-      console.log(employeeInvitation);
+      console.log("here", employeeInvitation);
       if (employeeInvitation.status === 201) {
         dispatch({ type: INVITE_EMPLOYEE_SUCCESS });
         return true;
