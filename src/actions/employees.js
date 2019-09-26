@@ -32,15 +32,29 @@ export const getAllCompanyEmployees = companyId => {
   };
 };
 
-export const inviteNewEmployee = (name, email, senderName) => {
+export const inviteNewEmployee = (name, email, senderName, companyId) => {
   return async dispatch => {
     try {
-      const invite = { full_name: name, email, sender_name: senderName };
+      const invite = {
+        full_name: name,
+        email,
+        sender_name: senderName,
+        company_id: companyId
+      };
       console.log(invite);
-
-      dispatch({ type: INVITE_EMPLOYEE_SUCCESS });
+      const employeeInvitation = await axios.post(
+        `${dbEndpoint}/api/invitation`,
+        invite
+      );
+      console.log(employeeInvitation);
+      if (employeeInvitation.status === 201) {
+        dispatch({ type: INVITE_EMPLOYEE_SUCCESS });
+        return true;
+      }
+      return false;
     } catch (err) {
       dispatch({ type: INVITE_EMPLOYEE_FAIL });
+      return false;
     }
   };
 };

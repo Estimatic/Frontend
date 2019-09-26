@@ -40,19 +40,32 @@ function CreateEmployee(props) {
             e.preventDefault();
 
             props
-              .inviteNewEmployee(fullName, email, props.user["full_name"])
+              .inviteNewEmployee(
+                fullName,
+                email,
+                props.user["full_name"],
+                props.user["company_id"]
+              )
               .then(res => {
-                Swal.fire(
-                  "Success!",
-                  "We've invited your new employee!",
-                  "success"
-                );
+                if (res) {
+                  Swal.fire(
+                    "Success!",
+                    `We've invited ${fullName} to join your company. They'll show up on your dashboard whenever they accept your invite.`,
+                    "success"
+                  );
+                } else {
+                  Swal.fire(
+                    "Oops!",
+                    "There was an issue inviting this employee. This person may already have and account with the email provided. Please double check the email and retry.",
+                    "warning"
+                  );
+                }
                 props.history.push("/app/employees");
               })
               .catch(err => {
                 Swal.fire(
                   "Oops!",
-                  "There was an issue inviting this employee. This person may already have and account with the email provided. Please try again in a few minutes.",
+                  "There was an issue inviting this employee. This is likely an issue with our server. Please try again in a few minutes.",
                   "warning"
                 );
               });
