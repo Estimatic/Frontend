@@ -11,7 +11,8 @@ export const RightChannelWrapper = styled.div`
   max-width: 1200px;
   margin: auto;
   padding: 8px 32px;
-  over-flow: scroll;
+  overflow: scroll;
+  background: black;
   box-sizing: border-box;
   background: #f8f8f8;
 `;
