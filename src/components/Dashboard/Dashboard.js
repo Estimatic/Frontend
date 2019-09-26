@@ -12,6 +12,8 @@ import CustomersTab from "./parts/CustomersTab";
 import MaterialsTab from "./parts/MaterialsTab";
 import MessagesTab from "./parts/MessagesTab";
 
+import CreateEmployee from "./parts/CreateEmployee";
+
 import { Route } from "react-router-dom";
 
 import { DashboardWrapper, RightChannelWrapper } from "./DashboardStyles";
@@ -48,11 +50,12 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <DashboardWrapper>
+      <DashboardWrapper style={{ position: "relative" }}>
         <SideNav
           setSideNavWidth={this.setSideNavWidth}
           sideNavWidth={this.state.sideNavWidth}
         />
+
         <RightChannelWrapper>
           <Header
             setSideNavWidth={this.setSideNavWidth}
@@ -68,6 +71,8 @@ class Dashboard extends React.Component {
             logout
           </button> */}
           <Route path="/app/employees" component={EmployeesTab} />
+          <Route path="/app/employees/invite" component={CreateEmployee} />
+
           <Route exact path="/app" component={MainDashTab} />
           <Route exact path="/app/projects" component={ProjectsTab} />
           <Route exact path="/app/customers" component={CustomersTab} />

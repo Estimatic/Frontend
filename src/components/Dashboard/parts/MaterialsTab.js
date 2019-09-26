@@ -4,7 +4,7 @@ import { ViewWrapper } from "./ViewWrapper";
 export default function MaterialsTab() {
   return (
     <ViewWrapper>
-      <h3>Your Materials</h3>
+      <h3>Your Materials (assigned by grade, i.e. A,B,C,D,F)</h3>
     </ViewWrapper>
   );
 }

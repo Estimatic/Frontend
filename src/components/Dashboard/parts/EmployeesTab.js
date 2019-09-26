@@ -11,6 +11,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
+import Button from "@material-ui/core/Button";
 
 const columns = [
   { id: "name", label: "Name", minWidth: 120 },
@@ -26,20 +27,6 @@ function createData(name, email, projects) {
   return { name, email, projects };
 }
 
-// const rows = [
-//   createData("Thomas Hessburg", "thomas.hessburg@gmail.com", 4),
-//   createData("Thomas Hessburg", "thomas.hessburg1@gmail.com", 4),
-//   createData("Thomas Hessburg", "thomas.hessburg2@gmail.com", 4),
-//   createData("Thomas Hessburg", "thomas.hessburg3@gmail.com", 4),
-//   createData("Thomas Hessburg", "thomas.hessburg4@gmail.com", 4),
-//   createData("Thomas Hessburg", "thomas.hessburg5@gmail.com", 4),
-//   createData("Thomas Hessburg", "thomas.hessburg6@gmail.com", 4),
-//   createData("Thomas Hessburg", "thomas.hessburg7@gmail.com", 4),
-//   createData("Thomas Hessburg", "thomas.hessburg8@gmail.com", 4),
-//   createData("Thomas Hessburg", "thomas.hessburg9@gmail.com", 4),
-//   createData("Thomas Hessburg", "thomas.hessburg10@gmail.com", 4)
-// ];
-
 const useStyles = makeStyles({
   root: {
     width: "100%"
@@ -47,6 +34,12 @@ const useStyles = makeStyles({
   tableWrapper: {
     maxHeight: 407,
     overflow: "auto"
+  },
+  margin: {
+    margin: "16px",
+    marginRight: "0",
+    background: "#3B49B8",
+    color: "white"
   }
 });
 
@@ -85,7 +78,7 @@ function EmployeesTab(props) {
 
   return (
     <ViewWrapper>
-      <h3>Basic Metrics</h3>
+      <h3>Metrics</h3>
 
       {/* table element */}
       <Paper className={classes.root}>
@@ -148,6 +141,25 @@ function EmployeesTab(props) {
         />
       </Paper>
       {/* endtable element */}
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "flex-end"
+        }}
+      >
+        <Button
+          color="primary"
+          variant="contained"
+          size="medium"
+          className={classes.margin}
+          onClick={() => {
+            props.history.push("/app/employees/invite");
+          }}
+        >
+          Add Employee
+        </Button>
+      </div>
     </ViewWrapper>
   );
 }
