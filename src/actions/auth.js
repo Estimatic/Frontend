@@ -16,6 +16,9 @@ export const COMPANY_RETRIEVED = "COMPANY_RETRIEVED";
 
 export const GET_EMPLOYEES_SUCCES = "GET_EMPLOYEES_SUCCES";
 
+export const USER_CREATION_INVITE_SUCCESS = "USER_CREATION_INVITE_SUCCESS";
+export const USER_CREATION_INVITE_FAIL = "USER_CREATION_INVITE_FAIL";
+
 // sets auth header automatically
 axios.interceptors.request.use(
   function(config) {
@@ -83,6 +86,25 @@ export const createNewAccountAndCompany = (companyInfo, userInfo) => {
       return true;
     } catch (err) {
       dispatch({ type: USER_CREATION_FAIL, payload: err });
+      return false;
+    }
+  };
+};
+
+export const createNewAccount = (userInfo, invitationId) => {
+  return async dispatch => {
+    try {
+      // create the new user
+      const newUser = await axios.post(`${dbEndpoint}/api/auth/register`, {
+        ...userInfo
+      });
+
+      dispatch({ type: USER_CREATION_INVITE_SUCCESS, payload: newUser });
+      // delete the invitation so that it cannot be reused
+      await axios.delete(`${dbEndpoint}/api/invitation/${invitationId}`);
+      return true;
+    } catch (err) {
+      dispatch({ type: USER_CREATION_INVITE_FAIL, payload: err });
       return false;
     }
   };

@@ -6,6 +6,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import SignUp from "./components/SignUp/SignUp";
 import Login from "./components/Login/Login";
 import Dashboard from "./components/Dashboard/Dashboard";
+import InvitationSignUp from "./components/InvitationSignUp/InvitationSignUp";
 import Redirected from "./components/Misc/Redirected";
 
 import authenticate from "./components/Misc/authenticate";
@@ -21,6 +22,7 @@ class App extends React.Component {
         <Route path="/login" render={props => <Login {...props} />} />
         <Route path="/app" component={authenticate(Dashboard)} />
         <Route path="/redirected" component={Redirected} />
+        <Route path="/joincompany/:id" component={InvitationSignUp} />
       </div>
     );
   }

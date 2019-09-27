@@ -7,6 +7,9 @@ export const GET_EMPLOYEES_FAIL = "GET_EMPLOYEES_FAIL";
 export const INVITE_EMPLOYEE_FAIL = "INVITE_EMPLOYEE_FAIL";
 export const INVITE_EMPLOYEE_SUCCESS = "INVITE_EMPLOYEE_SUCCESS";
 
+export const GET_INVITATION_SUCCESS = "GET_INVITATION_SUCCESS";
+export const GET_INVITATION_FAIL = "GET_INVITATION_FAIL";
+
 // sets auth header automatically
 axios.interceptors.request.use(
   function(config) {
@@ -41,7 +44,6 @@ export const inviteNewEmployee = (name, email, senderName, companyId) => {
         sender_name: senderName,
         company_id: companyId
       };
-      console.log(invite);
       const employeeInvitation = await axios.post(
         `${dbEndpoint}/api/invitation`,
         invite
@@ -54,6 +56,23 @@ export const inviteNewEmployee = (name, email, senderName, companyId) => {
       return false;
     } catch (err) {
       dispatch({ type: INVITE_EMPLOYEE_FAIL });
+      return false;
+    }
+  };
+};
+
+export const getInvitation = id => {
+  return async dispatch => {
+    try {
+      const invitation = await axios.get(`${dbEndpoint}/api/invitation/${id}`);
+
+      const fullInvite = invitation.data;
+
+      dispatch({ type: GET_INVITATION_SUCCESS, payload: fullInvite });
+      return true;
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: GET_INVITATION_FAIL });
       return false;
     }
   };

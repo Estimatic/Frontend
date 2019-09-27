@@ -1,7 +1,12 @@
-import { GET_EMPLOYEES_SUCCES, GET_EMPLOYEES_FAIL } from "../actions/employees";
+import {
+  GET_EMPLOYEES_SUCCES,
+  GET_EMPLOYEES_FAIL,
+  GET_INVITATION_SUCCESS
+} from "../actions/employees";
 
 const initialState = {
-  employees: []
+  employees: [],
+  invitation: {}
 };
 
 const employeeReducer = (state = initialState, action) => {
@@ -16,6 +21,13 @@ const employeeReducer = (state = initialState, action) => {
       // just a note to self to think through error handeling for stuff like this :)
       return {
         ...state
+      };
+
+    case GET_INVITATION_SUCCESS:
+      const invitation = action.payload;
+      return {
+        ...state,
+        invitation: { ...invitation }
       };
 
     default:
