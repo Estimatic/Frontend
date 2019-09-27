@@ -47,8 +47,9 @@ function EmployeesTab(props) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
   const [rows, setRows] = React.useState([]);
+
+  const { main_color, side_bar_color, secondary_color } = props.ui.colors;
 
   //turns employees into correct format
   const { employees } = props.employees;
@@ -91,7 +92,7 @@ function EmployeesTab(props) {
                     key={column.id}
                     style={{
                       minWidth: column.minWidth,
-                      color: "#3B49B8"
+                      color: secondary_color || "#3B49B8"
                     }}
                   >
                     {column.label}
@@ -149,7 +150,10 @@ function EmployeesTab(props) {
         }}
       >
         <Button
-          color="primary"
+          style={{
+            backgroundColor: secondary_color || "#3B49B8",
+            color: side_bar_color || "white"
+          }}
           variant="contained"
           size="medium"
           className={classes.margin}
@@ -167,7 +171,8 @@ function EmployeesTab(props) {
 const mapStateToProps = state => {
   return {
     employees: state.employees,
-    companyId: state.auth.user["company_id"]
+    companyId: state.auth.user["company_id"],
+    ui: { ...state.ui }
   };
 };
 

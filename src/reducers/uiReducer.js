@@ -1,7 +1,12 @@
-import { CHANGE_CUR_TAB } from "../actions/ui";
+import { CHANGE_CUR_TAB, LOADED_COLORS } from "../actions/ui";
 
 const initialState = {
-  curTab: "Dashboard"
+  curTab: "Dashboard",
+  colors: {
+    main_color: null,
+    secondary_color: null,
+    side_bar_color: null
+  }
 };
 
 const uiReducer = (state = initialState, action) => {
@@ -10,6 +15,12 @@ const uiReducer = (state = initialState, action) => {
       return {
         ...state,
         curTab: action.payload
+      };
+
+    case LOADED_COLORS:
+      return {
+        ...state,
+        colors: { ...action.payload }
       };
 
     default:

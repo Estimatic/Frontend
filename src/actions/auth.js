@@ -1,4 +1,5 @@
 import axios from "axios";
+import { LOADED_COLORS } from "./ui";
 const dbEndpoint = process.env.DB_ENDPOINT || "http://localhost:5000";
 
 export const SET_USER_INFO_SUBMISSION = "SET_USER_INFO_SUBMISSION";
@@ -143,6 +144,13 @@ export const decodeAndRetrieveUserProfile = () => {
     const companyId = response.data["company_id"];
     const company = await axios.get(`${dbEndpoint}/api/company/${companyId}`);
     dispatch({ type: COMPANY_RETRIEVED, payload: company.data });
+
+    const { main_color, secondary_color, side_bar_color } = company.data;
+
+    dispatch({
+      type: LOADED_COLORS,
+      payload: { main_color, secondary_color, side_bar_color }
+    });
   };
 };
 

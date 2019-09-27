@@ -4,7 +4,7 @@ import { Cover } from "./Cover";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 function AccountSettings(props) {
   return (

@@ -15,8 +15,14 @@ import {
 } from "./SideNavStyles";
 
 function SideNav(props) {
+  const { main_color, side_bar_color } = props.ui.colors;
+
   return (
-    <SideBarWrapper sideNavWidth={props.sideNavWidth}>
+    <SideBarWrapper
+      bgColor={main_color}
+      fontColor={side_bar_color}
+      sideNavWidth={props.sideNavWidth}
+    >
       <StyledClose
         onClick={e => {
           props.setSideNavWidth("0px");
@@ -37,7 +43,8 @@ function SideNav(props) {
               borderRadius: "50%",
               margin: "auto",
               marginBottom: "16px",
-              marginTop: "36px"
+              marginTop: "36px",
+              background: side_bar_color
             }}
             alt="user avatar"
             src={

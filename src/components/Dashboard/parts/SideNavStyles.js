@@ -20,15 +20,18 @@ export const SideBarWrapper = styled.div`
   height: 100vh;
   position: sticky;
   overflow-y: scroll;
+  color: ${props => props.fontColor || "white"};
   top: 0;
   margin: 0;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.55);
-  background: linear-gradient(
+  background: ${props =>
+    props.bgColor ||
+    `linear-gradient(
     186deg,
     rgba(72, 165, 209, 1) 0%,
     rgba(64, 120, 196, 1) 19%,
     rgba(59, 73, 184, 1) 94%
-  );
+  )`};
   padding: 0 16px;
 
   @media (max-width: ${breakPointOne}) {
@@ -38,7 +41,6 @@ export const SideBarWrapper = styled.div`
   }
 
   ul {
-    color: white;
     padding: 0;
     li {
       padding: 16px;
@@ -50,6 +52,12 @@ export const SideBarWrapper = styled.div`
       align-items: center;
       border-radius: 4px;
     }
+  }
+  h5 {
+    color: ${props => props.fontColor || "white"};
+  }
+  svg {
+    color: ${props => props.fontColor || "white"};
   }
 `;
 

@@ -21,6 +21,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function CreateEmployee(props) {
+  const { side_bar_color, secondary_color } = props.ui.colors;
+
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
 
@@ -32,7 +34,11 @@ function CreateEmployee(props) {
         props.history.push("/app/employees");
       }}
     >
-      <LoginFormMain onClick={e => e.stopPropagation()}>
+      <LoginFormMain
+        btnBackground={secondary_color}
+        fontColor={side_bar_color}
+        onClick={e => e.stopPropagation()}
+      >
         <h4>Add Employee</h4>
         <hr />
         <form
@@ -123,7 +129,8 @@ function CreateEmployee(props) {
 
 const mapStateToProps = state => {
   return {
-    user: { ...state.auth.user }
+    user: { ...state.auth.user },
+    ui: { ...state.ui }
   };
 };
 
@@ -155,15 +162,17 @@ const LoginFormMain = styled.div`
     width: 160px;
     padding: 12px 0;
     border-radius: 32px;
-    background: linear-gradient(
+    background: ${props =>
+      props.btnBackground ||
+      `linear-gradient(
       45deg,
       rgba(62, 132, 197, 1) 33%,
       rgba(60, 103, 190, 1) 61%,
       rgba(59, 73, 184, 1) 91%,
       rgba(59, 73, 184, 1) 93%,
       rgba(59, 73, 184, 1) 100%
-    );
-    color: white;
+    )`};
+    color: ${props => props.fontColor || "white"};
     border: none;
     cursor: pointer;
     font-size: 14px;
