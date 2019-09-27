@@ -84,8 +84,22 @@ function Header(props) {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>Account Settings</MenuItem>
-          <MenuItem onClick={handleClose}>Display Settings</MenuItem>
+          <MenuItem
+            onClick={e => {
+              handleClose();
+              props.history.push("/app/accountsettings");
+            }}
+          >
+            Account Settings
+          </MenuItem>
+          <MenuItem
+            onClick={e => {
+              handleClose();
+              props.history.push("/app/displaysettings");
+            }}
+          >
+            Display Settings
+          </MenuItem>
           <MenuItem
             onClick={() => {
               handleClose();
