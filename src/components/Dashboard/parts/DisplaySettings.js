@@ -85,6 +85,7 @@ function DisplaySettings(props) {
             <Button
               color="primary"
               variant="contained"
+              style={{ backgroundColor: main_color || null }}
               size="medium"
               onClick={() => {
                 const newDisplaySettings = {
@@ -116,8 +117,8 @@ function DisplaySettings(props) {
             </Button>
 
             <Button
-              color="primary"
               size="medium"
+              style={{ color: main_color || null }}
               onClick={() => {
                 const newDisplaySettings = {
                   main_color: null,
