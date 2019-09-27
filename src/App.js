@@ -14,6 +14,16 @@ import authenticate from "./components/Misc/authenticate";
 import { Route } from "react-router-dom";
 
 class App extends React.Component {
+  componentDidMount() {
+    console.log("cur location ", this.props.history.location.pathname);
+    let path = this.props.history.location.pathname;
+    let token = localStorage.getItem("token");
+
+    if (path === "/" && token) {
+      this.props.history.push("/app");
+    }
+  }
+
   render() {
     return (
       <div>
