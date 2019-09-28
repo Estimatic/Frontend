@@ -19,9 +19,7 @@ function DisplaySettings(props) {
   const [sideBarFont, setSideBarFont] = useState("#FFFFFF");
 
   useEffect(() => {
-    console.log(main_color, side_bar_color, secondary_color);
     if (main_color) {
-      console.log(main_color);
       setMainColor(main_color);
     }
     if (side_bar_color) {

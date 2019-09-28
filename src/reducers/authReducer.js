@@ -4,7 +4,9 @@ import {
   USER_CREATION_SUCCESS,
   USER_LOGIN_SUCCESS,
   USER_OPENED_DASHBOARD,
-  COMPANY_RETRIEVED
+  COMPANY_RETRIEVED,
+  UPDATE_USER_INFO,
+  UPDATE_COMPANY_INFO
 } from "../actions/auth";
 
 // user and company will be used whenever logging in or after creating an account
@@ -80,6 +82,21 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         company: { ...action.payload }
+      };
+    case UPDATE_USER_INFO:
+      return {
+        ...state,
+        user: {
+          ...action.payload
+        }
+      };
+
+    case UPDATE_COMPANY_INFO:
+      return {
+        ...state,
+        company: {
+          ...action.payload
+        }
       };
 
     default:

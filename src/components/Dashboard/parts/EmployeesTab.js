@@ -49,7 +49,7 @@ function EmployeesTab(props) {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, setRows] = React.useState([]);
 
-  const { main_color, side_bar_color, secondary_color } = props.ui.colors;
+  const { side_bar_color, secondary_color } = props.ui.colors;
 
   //turns employees into correct format
   const { employees } = props.employees;

@@ -20,6 +20,9 @@ export const GET_EMPLOYEES_SUCCES = "GET_EMPLOYEES_SUCCES";
 export const USER_CREATION_INVITE_SUCCESS = "USER_CREATION_INVITE_SUCCESS";
 export const USER_CREATION_INVITE_FAIL = "USER_CREATION_INVITE_FAIL";
 
+export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
+export const UPDATE_COMPANY_INFO = "UPDATE_COMPANY_INFO";
+
 // sets auth header automatically
 axios.interceptors.request.use(
   function(config) {
@@ -161,5 +164,51 @@ export const sendVerificationEmail = email => {
       email
     );
     console.log(emailSend);
+  };
+};
+
+export const updateUser = (newInfo, userId) => {
+  return async dispatch => {
+    try {
+      const updatedUser = await axios.put(
+        `${dbEndpoint}/api/users/${userId}`,
+        newInfo
+      );
+      dispatch({ type: UPDATE_USER_INFO, payload: updatedUser.data });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+};
+
+export const updateCompany = (newInfo, companyId) => {
+  return async dispatch => {
+    try {
+      const updatedCompany = await axios.put(
+        `${dbEndpoint}/api/company/${companyId}`,
+        newInfo
+      );
+      dispatch({ type: UPDATE_COMPANY_INFO, payload: updatedCompany.data });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+};
+
+export const updatePassword = (passInfo, userId) => {
+  return async dispatch => {
+    try {
+      const updatedUser = await axios.put(
+        `${dbEndpoint}/api/auth/updatePassword/${userId}`,
+        passInfo
+      );
+
+      if (updatedUser) return true;
+      return false;
+    } catch (err) {
+      return false;
+    }
   };
 };

@@ -15,7 +15,6 @@ import { Route } from "react-router-dom";
 
 class App extends React.Component {
   componentDidMount() {
-    console.log("cur location ", this.props.history.location.pathname);
     let path = this.props.history.location.pathname;
     let token = localStorage.getItem("token");
 

@@ -48,7 +48,6 @@ export const inviteNewEmployee = (name, email, senderName, companyId) => {
         `${dbEndpoint}/api/invitation`,
         invite
       );
-      console.log("here", employeeInvitation);
       if (employeeInvitation.status === 201) {
         dispatch({ type: INVITE_EMPLOYEE_SUCCESS });
         return true;
@@ -71,7 +70,6 @@ export const getInvitation = id => {
       dispatch({ type: GET_INVITATION_SUCCESS, payload: fullInvite });
       return true;
     } catch (err) {
-      console.log(err);
       dispatch({ type: GET_INVITATION_FAIL });
       return false;
     }

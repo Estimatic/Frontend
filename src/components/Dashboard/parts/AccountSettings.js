@@ -15,7 +15,13 @@ import Flag from "@material-ui/icons/Flag";
 import Lock from "@material-ui/icons/Lock";
 import Button from "@material-ui/core/Button";
 
-// import Swal from "sweetalert2";
+import {
+  updateUser,
+  updateCompany,
+  updatePassword
+} from "../../../actions/auth";
+
+import Swal from "sweetalert2";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -41,7 +47,6 @@ function AccountSettings(props) {
   const classes = useStyles();
 
   useEffect(() => {
-    console.log(props);
     if (props.user.email) {
       setEmail(props.user.email);
     }
@@ -139,6 +144,30 @@ function AccountSettings(props) {
               style={{
                 backgroundColor: main_color || null,
                 color: side_bar_color || "white"
+              }}
+              onClick={e => {
+                e.preventDefault();
+                const userUpdates = {
+                  email,
+                  full_name: fullName
+                };
+                props.updateUser(userUpdates, props.user._id).then(res => {
+                  if (res) {
+                    props.history.push("/app");
+                    Swal.fire(
+                      "Success!",
+                      `We've updated your settings!`,
+                      "success"
+                    );
+                  } else {
+                    props.history.push("/app");
+                    Swal.fire(
+                      "Oops!",
+                      "There was an issue updating your settings.",
+                      "warning"
+                    );
+                  }
+                });
               }}
             >
               Save
@@ -245,6 +274,35 @@ function AccountSettings(props) {
                 backgroundColor: main_color || null,
                 color: side_bar_color || "white"
               }}
+              onClick={e => {
+                e.preventDefault();
+                const companyUpdates = {
+                  name: companyName,
+                  address,
+                  city,
+                  state: companyState,
+                  phone
+                };
+                props
+                  .updateCompany(companyUpdates, props.company._id)
+                  .then(res => {
+                    if (res) {
+                      props.history.push("/app");
+                      Swal.fire(
+                        "Success!",
+                        `We've updated your settings!`,
+                        "success"
+                      );
+                    } else {
+                      props.history.push("/app");
+                      Swal.fire(
+                        "Oops!",
+                        "There was an issue updating your settings",
+                        "warning"
+                      );
+                    }
+                  });
+              }}
             >
               Save
             </Button>
@@ -261,7 +319,7 @@ function AccountSettings(props) {
                 </Grid>
                 <Grid item style={{ width: "100%", maxWidth: "370px" }}>
                   <TextField
-                    type="text"
+                    type="password"
                     fullWidth={true}
                     value={oldPass}
                     onChange={e => {
@@ -279,7 +337,7 @@ function AccountSettings(props) {
                 </Grid>
                 <Grid item style={{ width: "100%", maxWidth: "370px" }}>
                   <TextField
-                    type="text"
+                    type="password"
                     fullWidth={true}
                     value={newPass}
                     onChange={e => {
@@ -297,7 +355,7 @@ function AccountSettings(props) {
                 </Grid>
                 <Grid item style={{ width: "100%", maxWidth: "370px" }}>
                   <TextField
-                    type="text"
+                    type="password"
                     fullWidth={true}
                     value={rtNewPass}
                     onChange={e => {
@@ -313,6 +371,29 @@ function AccountSettings(props) {
               style={{
                 backgroundColor: main_color || null,
                 color: side_bar_color || "white"
+              }}
+              onClick={e => {
+                e.preventDefault();
+                if (newPass === rtNewPass) {
+                  const passInfo = {
+                    newPass,
+                    oldPass
+                  };
+                  props.updatePassword(passInfo, props.user._id).then(res => {
+                    if (res) {
+                      props.history.push("/app");
+                      Swal.fire(
+                        "Success!",
+                        `We've updated your password!`,
+                        "success"
+                      );
+                    } else {
+                      Swal.fire("Oops!", "Incorrect password!", "warning");
+                    }
+                  });
+                } else {
+                  Swal.fire("Oops!", "Passwords don't match.", "warning");
+                }
               }}
             >
               Save
@@ -334,7 +415,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { updateUser, updateCompany, updatePassword }
 )(withRouter(AccountSettings));
 
 const DisplayWrapper = styled.div`
