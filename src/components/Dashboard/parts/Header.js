@@ -70,7 +70,7 @@ function Header(props) {
       <RightHeaderSection>
         <h5>{props.company.name}</h5>
         <StyledNotification />
-        <StyledQuestion />
+        <StyledQuestion onClick={() => props.history.push("/app/help")} />
         <StyledSettings
           aria-controls="simple-menu"
           aria-haspopup="true"

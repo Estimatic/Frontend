@@ -13,6 +13,7 @@ import MaterialsTab from "./parts/MaterialsTab";
 import MessagesTab from "./parts/MessagesTab";
 import DisplaySettings from "./parts/DisplaySettings";
 import AccountSettings from "./parts/AccountSettings";
+import HelpPage from "./parts/HelpPage";
 
 import CreateEmployee from "./parts/CreateEmployee";
 
@@ -80,6 +81,7 @@ class Dashboard extends React.Component {
           <Route exact path="/app/customers" component={CustomersTab} />
           <Route exact path="/app/materials" component={MaterialsTab} />
           <Route exact path="/app/messages" component={MessagesTab} />
+          <Route exact path="/app/help" component={HelpPage} />
 
           <Route
             exact
