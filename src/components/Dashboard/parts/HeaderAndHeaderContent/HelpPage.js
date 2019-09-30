@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Cover } from "./Cover";
+import { Cover } from "../Cover";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 

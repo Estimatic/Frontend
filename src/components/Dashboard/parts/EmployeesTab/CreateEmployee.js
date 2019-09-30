@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Cover } from "./Cover";
+import { Cover } from "../Cover";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
@@ -12,7 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import Email from "@material-ui/icons/Email";
 import Person from "@material-ui/icons/Person";
 
-import { inviteNewEmployee } from "../../../actions/employees";
+import { inviteNewEmployee } from "../../../../actions/employees";
 
 const useStyles = makeStyles(theme => ({
   margin: {

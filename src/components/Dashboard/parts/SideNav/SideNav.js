@@ -38,8 +38,8 @@ function SideNav(props) {
         <ImgNameWrapper>
           <img
             style={{
-              width: "60px",
-              height: "60px",
+              width: "70px",
+              height: "70px",
               borderRadius: "50%",
               margin: "auto",
               marginBottom: "16px",

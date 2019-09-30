@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import { changeCurTab } from "../../../actions/ui";
+import { changeCurTab } from "../../../../actions/ui";
 
 import {
   HeaderWrapper,

@@ -1,10 +1,11 @@
 import React from "react";
-import { ViewWrapper } from "./ViewWrapper";
+import { ViewWrapper } from "../ViewWrapper";
 
 export default function MessagesTab() {
   return (
     <ViewWrapper>
       <h3>Your Messages</h3>
+      <hr />
     </ViewWrapper>
   );
 }

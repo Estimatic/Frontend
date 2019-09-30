@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { ViewWrapper } from "./ViewWrapper";
+import { ViewWrapper } from "../ViewWrapper";
+import { getAllCompanyEmployees } from "../../../../actions/employees";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -12,20 +13,18 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
 
-import { getAllCompanyCustomers } from "../../../actions/customers";
-
 const columns = [
   { id: "name", label: "Name", minWidth: 120 },
   { id: "email", label: "Email", minWidth: 120 },
   {
-    id: "address",
-    label: "Address",
-    minWidth: 170
+    id: "projects",
+    label: "# Projects",
+    minWidth: 80
   }
 ];
 
-function createData(name, email, address) {
-  return { name, email, address };
+function createData(name, email, projects) {
+  return { name, email, projects };
 }
 
 const useStyles = makeStyles({
@@ -44,7 +43,7 @@ const useStyles = makeStyles({
   }
 });
 
-function CustomersTab(props) {
+function EmployeesTab(props) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -53,25 +52,21 @@ function CustomersTab(props) {
   const { side_bar_color, secondary_color } = props.ui.colors;
 
   //turns employees into correct format
-  const { customers } = props;
+  const { employees } = props.employees;
   useEffect(() => {
-    const newRows = customers.map(customer => {
-      return createData(
-        customer["full_name"],
-        customer.email,
-        customer.address
-      );
+    const newRows = employees.map(employee => {
+      return createData(employee["full_name"], employee.email, 1);
     });
     setRows(newRows);
-  }, [customers]);
+  }, [employees]);
 
-  const { companyId, getAllCompanyCustomers } = props;
+  const { companyId, getAllCompanyEmployees } = props;
 
   useEffect(() => {
     if (companyId) {
-      getAllCompanyCustomers(companyId);
+      getAllCompanyEmployees(companyId);
     }
-  }, [companyId, getAllCompanyCustomers]);
+  }, [companyId, getAllCompanyEmployees]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -84,8 +79,8 @@ function CustomersTab(props) {
 
   return (
     <ViewWrapper>
-      <h3>Your Customers</h3>
-
+      <h3>Metrics</h3>
+      <hr />
       {/* table element */}
       <Paper className={classes.root}>
         <div className={classes.tableWrapper}>
@@ -114,7 +109,7 @@ function CustomersTab(props) {
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={Math.random()}
+                      key={row.email}
                     >
                       {columns.map(column => {
                         const value = row[column.id];
@@ -163,10 +158,10 @@ function CustomersTab(props) {
           size="medium"
           className={classes.margin}
           onClick={() => {
-            props.history.push("/app/customers/create");
+            props.history.push("/app/employees/invite");
           }}
         >
-          Add Customer
+          Add Employee
         </Button>
       </div>
     </ViewWrapper>
@@ -175,13 +170,13 @@ function CustomersTab(props) {
 
 const mapStateToProps = state => {
   return {
+    employees: state.employees,
     companyId: state.auth.user["company_id"],
-    ui: { ...state.ui },
-    customers: state.customers.customers
+    ui: { ...state.ui }
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getAllCompanyCustomers }
-)(CustomersTab);
+  { getAllCompanyEmployees }
+)(EmployeesTab);

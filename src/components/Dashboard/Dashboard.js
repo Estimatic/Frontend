@@ -3,20 +3,20 @@ import { decodeAndRetrieveUserProfile } from "../../actions/auth";
 
 import { connect } from "react-redux";
 
-import Header from "./parts/Header";
-import SideNav from "./parts/SideNav";
-import EmployeesTab from "./parts/EmployeesTab";
-import MainDashTab from "./parts/MainDashTab";
-import ProjectsTab from "./parts/ProjectsTab";
-import CustomersTab from "./parts/CustomersTab";
-import MaterialsTab from "./parts/MaterialsTab";
-import MessagesTab from "./parts/MessagesTab";
-import DisplaySettings from "./parts/DisplaySettings";
-import AccountSettings from "./parts/AccountSettings";
-import HelpPage from "./parts/HelpPage";
-import CreateCustomer from "./parts/CreateCustomer";
+import Header from "./parts/HeaderAndHeaderContent/Header";
+import SideNav from "./parts/SideNav/SideNav";
+import EmployeesTab from "./parts/EmployeesTab/EmployeesTab";
+import MainDashTab from "./parts/MainDashTab/MainDashTab";
+import ProjectsTab from "./parts/ProjectsTab/ProjectsTab";
+import CustomersTab from "./parts/CustomersTab/CustomersTab";
+import MaterialsTab from "./parts/MaterialsTab/MaterialsTab";
+import MessagesTab from "./parts/MessagesTab/MessagesTab";
+import DisplaySettings from "./parts/HeaderAndHeaderContent/DisplaySettings";
+import AccountSettings from "./parts/HeaderAndHeaderContent/AccountSettings";
+import HelpPage from "./parts/HeaderAndHeaderContent/HelpPage";
+import CreateCustomer from "./parts/CustomersTab/CreateCustomer";
 
-import CreateEmployee from "./parts/CreateEmployee";
+import CreateEmployee from "./parts/EmployeesTab/CreateEmployee";
 
 import { Route } from "react-router-dom";
 

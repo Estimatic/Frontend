@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
-import { Cover } from "./Cover";
+import { Cover } from "../Cover";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { ChromePicker } from "react-color";
 import Button from "@material-ui/core/Button";
 
-import { updateCompanyColors } from "../../../actions/ui";
+import { updateCompanyColors } from "../../../../actions/ui";
 
 import Swal from "sweetalert2";
 

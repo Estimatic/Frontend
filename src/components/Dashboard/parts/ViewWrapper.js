@@ -16,4 +16,10 @@ export const ViewWrapper = styled.div`
     margin-bottom: 32px;
     color: rgba(0, 0, 0, 0.5);
   }
+
+  hr {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 32px;
+    margin-top: 0;
+  }
 `;

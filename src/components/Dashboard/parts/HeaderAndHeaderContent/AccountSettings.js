@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Cover } from "./Cover";
+import { Cover } from "../Cover";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
@@ -19,7 +19,7 @@ import {
   updateUser,
   updateCompany,
   updatePassword
-} from "../../../actions/auth";
+} from "../../../../actions/auth";
 
 import Swal from "sweetalert2";
 
