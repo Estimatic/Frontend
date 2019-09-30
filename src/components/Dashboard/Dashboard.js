@@ -14,6 +14,7 @@ import MessagesTab from "./parts/MessagesTab";
 import DisplaySettings from "./parts/DisplaySettings";
 import AccountSettings from "./parts/AccountSettings";
 import HelpPage from "./parts/HelpPage";
+import CreateCustomer from "./parts/CreateCustomer";
 
 import CreateEmployee from "./parts/CreateEmployee";
 
@@ -78,9 +79,12 @@ class Dashboard extends React.Component {
 
           <Route exact path="/app" component={MainDashTab} />
           <Route exact path="/app/projects" component={ProjectsTab} />
-          <Route exact path="/app/customers" component={CustomersTab} />
+          <Route path="/app/customers" component={CustomersTab} />
+          <Route path="/app/customers/create" component={CreateCustomer} />
+
           <Route exact path="/app/materials" component={MaterialsTab} />
           <Route exact path="/app/messages" component={MessagesTab} />
+          <Route exact path="/app/help" component={HelpPage} />
           <Route exact path="/app/help" component={HelpPage} />
 
           <Route

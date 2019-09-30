@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 // import Swal from "sweetalert2";
 
 function HelpPage(props) {
-  const { main_color, side_bar_color, secondary_color } = props.ui.colors;
+  const { secondary_color } = props.ui.colors;
 
   return (
     <Cover

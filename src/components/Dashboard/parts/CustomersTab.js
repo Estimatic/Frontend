@@ -12,18 +12,20 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
 
+import { getAllCompanyCustomers } from "../../../actions/customers";
+
 const columns = [
   { id: "name", label: "Name", minWidth: 120 },
   { id: "email", label: "Email", minWidth: 120 },
   {
-    id: "projects",
-    label: "# Projects",
-    minWidth: 80
+    id: "address",
+    label: "Address",
+    minWidth: 170
   }
 ];
 
-function createData(name, email, projects) {
-  return { name, email, projects };
+function createData(name, email, address) {
+  return { name, email, address };
 }
 
 const useStyles = makeStyles({
@@ -51,21 +53,25 @@ function CustomersTab(props) {
   const { side_bar_color, secondary_color } = props.ui.colors;
 
   //turns employees into correct format
-  // const { employees } = props.employees;
+  const { customers } = props;
   useEffect(() => {
-    // const newRows = employees.map(employee => {
-    //   return createData(employee["full_name"], employee.email, 1);
-    // });
-    // setRows(newRows);
-  }, []);
+    const newRows = customers.map(customer => {
+      return createData(
+        customer["full_name"],
+        customer.email,
+        customer.address
+      );
+    });
+    setRows(newRows);
+  }, [customers]);
 
-  const { companyId } = props;
+  const { companyId, getAllCompanyCustomers } = props;
 
   useEffect(() => {
     if (companyId) {
-      // getAllCompanyEmployees(companyId);
+      getAllCompanyCustomers(companyId);
     }
-  }, [companyId]);
+  }, [companyId, getAllCompanyCustomers]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -108,7 +114,7 @@ function CustomersTab(props) {
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={row.email}
+                      key={Math.random()}
                     >
                       {columns.map(column => {
                         const value = row[column.id];
@@ -157,7 +163,7 @@ function CustomersTab(props) {
           size="medium"
           className={classes.margin}
           onClick={() => {
-            props.history.push("/app/custoemrs/invite");
+            props.history.push("/app/customers/create");
           }}
         >
           Add Customer
@@ -170,11 +176,12 @@ function CustomersTab(props) {
 const mapStateToProps = state => {
   return {
     companyId: state.auth.user["company_id"],
-    ui: { ...state.ui }
+    ui: { ...state.ui },
+    customers: state.customers.customers
   };
 };
 
 export default connect(
   mapStateToProps,
-  {}
+  { getAllCompanyCustomers }
 )(CustomersTab);
