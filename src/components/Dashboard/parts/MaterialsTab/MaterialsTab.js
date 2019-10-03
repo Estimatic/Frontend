@@ -7,6 +7,7 @@ const fakeMaterials = [
   {
     _id: "1j3ih2i5bih123",
     name: "Shingles",
+    unit: "sq ft",
     materials: [
       {
         _id: "oij1249hn9e1",
@@ -49,6 +50,7 @@ const fakeMaterials = [
   {
     _id: "1j3ih2i5bih124",
     name: "Tiles",
+    unit: "sq ft",
     materials: [
       {
         _id: "fij1249hn9e1",
@@ -99,7 +101,7 @@ export default function MaterialsTab() {
 
   return (
     <ViewWrapper>
-      <h3>Your Materials (assigned by grade, i.e. A,B,C,D,F)</h3>
+      <h3>Your Materials</h3>
       <hr />
       {categories.length === 0 ? (
         <NoMaterials />

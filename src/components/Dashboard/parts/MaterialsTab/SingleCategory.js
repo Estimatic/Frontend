@@ -7,8 +7,9 @@ function SingleCategory(props) {
   const { secondary_color } = props.ui.colors;
   return (
     <Wrapper secondary_color={secondary_color}>
-      <h4>{props.category.name}</h4>
-
+      <h4>
+        {props.category.name} <span>- {props.category.unit}</span>{" "}
+      </h4>
       {props.category.materials.map(mat => {
         return <SingleMaterial material={mat} key={mat._id} />;
       })}
@@ -38,9 +39,17 @@ const Wrapper = styled.div`
   h4 {
     font-style: normal;
     font-size: 24px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     margin-top: 0;
     text-align: center;
     color: ${props => props.secondary_color || "#7A7A7A"};
+    span {
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 32px;
+      margin-top: 0;
+      font-weight: 200;
+      color: #7a7a7a;
+    }
   }
 `;

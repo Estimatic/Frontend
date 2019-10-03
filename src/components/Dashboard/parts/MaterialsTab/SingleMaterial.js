@@ -69,6 +69,10 @@ const Wrapper = styled.div`
       font-weight: 600;
     }
   }
+
+  hr {
+    margin-bottom: 16px;
+  }
 `;
 
 const BottomWrapper = styled.div`

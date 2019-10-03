@@ -142,7 +142,7 @@ function AccountSettings(props) {
             <Button
               size="medium"
               style={{
-                backgroundColor: main_color || null,
+                backgroundColor: main_color || "#3B50BA",
                 color: side_bar_color || "white"
               }}
               onClick={e => {
@@ -271,7 +271,7 @@ function AccountSettings(props) {
             <Button
               size="medium"
               style={{
-                backgroundColor: main_color || null,
+                backgroundColor: main_color || "#3B50BA",
                 color: side_bar_color || "white"
               }}
               onClick={e => {
@@ -369,7 +369,7 @@ function AccountSettings(props) {
             <Button
               size="medium"
               style={{
-                backgroundColor: main_color || null,
+                backgroundColor: main_color || "#3B50BA",
                 color: side_bar_color || "white"
               }}
               onClick={e => {
