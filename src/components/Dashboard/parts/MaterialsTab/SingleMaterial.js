@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
-export default function SingleMaterial(props) {
+function SingleMaterial(props) {
   const { name, description, photoUrl, grade } = props.material;
 
   const returnPropperGrade = grade => {
@@ -20,8 +21,10 @@ export default function SingleMaterial(props) {
     }
   };
 
+  const { secondary_color } = props.ui.colors;
+
   return (
-    <Wrapper>
+    <Wrapper secondary_color={secondary_color}>
       <h5>
         title: <span>{name}</span>
       </h5>
@@ -38,16 +41,30 @@ export default function SingleMaterial(props) {
   );
 }
 
+const mapStateToProps = state => {
+  return {
+    ui: { ...state.ui }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(SingleMaterial);
+
 const Wrapper = styled.div`
-  width: 92%;
+  width: 90%;
   padding: 12px;
-  margin: 8px auto;
+  margin: 16px auto;
   background: white;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 
   h5 {
     margin: 0 0 8px 0;
     font-weight: 200;
+    color: #7a7a7a;
     span {
+      color: ${props => props.secondary_color || "#7A7A7A"};
       font-size: 16px;
       font-weight: 600;
     }
@@ -78,8 +95,8 @@ const BottomRightWrapper = styled.div`
   h6 {
     position: absolute;
     margin: 0;
-    top: 8px;
-    right: 8px;
+    top: 4px;
+    right: 4px;
     font-size: 24px;
   }
 `;

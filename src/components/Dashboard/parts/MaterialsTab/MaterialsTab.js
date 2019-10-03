@@ -48,7 +48,7 @@ const fakeMaterials = [
   },
   {
     _id: "1j3ih2i5bih124",
-    name: "Shingles",
+    name: "Tiles",
     materials: [
       {
         _id: "fij1249hn9e1",
