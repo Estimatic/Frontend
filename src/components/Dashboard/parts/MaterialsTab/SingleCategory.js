@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import SingleMaterial from "./SingleMaterial";
 
 export default function SingleCategory(props) {
   return (
     <Wrapper>
       <h4>{props.category.name}</h4>
-      <ul>
-        {props.category.materials.map(mat => {
-          return <li key={mat._id}>{mat.name}</li>;
-        })}
-      </ul>
+
+      {props.category.materials.map(mat => {
+        return <SingleMaterial material={mat} key={mat._id} />;
+      })}
     </Wrapper>
   );
 }

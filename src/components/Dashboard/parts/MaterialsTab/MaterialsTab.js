@@ -42,7 +42,7 @@ const fakeMaterials = [
         description: "Matte low grade shingle",
         photoUrl:
           "https://modernize.com/wp-content/uploads/2015/09/missing-shingles-1024x683.jpg",
-        grade: "D"
+        grade: "F"
       }
     ]
   },
