@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ViewWrapper } from "../ViewWrapper";
 import NoMaterials from "./NoMaterials";
 import MaterialsInnerWrapper from "./MaterialsInnerWrapper";
+import ActionBar from "./ActionBar";
 
 const fakeMaterials = [
   {
@@ -102,7 +103,8 @@ export default function MaterialsTab() {
   return (
     <ViewWrapper>
       <h3>Your Materials</h3>
-      <hr />
+      <hr style={{ marginBottom: "16px" }} />
+      <ActionBar />
       {categories.length === 0 ? (
         <NoMaterials />
       ) : (
