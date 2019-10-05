@@ -30,11 +30,11 @@ function SingleMaterial(props) {
       </h5>
       <hr />
       <BottomWrapper>
-        <img src={photoUrl} />
+        <img src={photoUrl} alt={`${name}`} />
         <BottomRightWrapper>
           <h5>description:</h5>
           <p>{description}</p>
-          <h6>{returnPropperGrade(grade)}</h6>
+          {returnPropperGrade(grade)}
         </BottomRightWrapper>
       </BottomWrapper>
     </Wrapper>
@@ -97,10 +97,12 @@ const BottomRightWrapper = styled.div`
   background: white;
   position: relative;
   h6 {
+    font-style: normal;
     position: absolute;
     margin: 0;
     top: 4px;
     right: 4px;
-    font-size: 24px;
+    font-size: 20px;
+    font-weight: 200;
   }
 `;

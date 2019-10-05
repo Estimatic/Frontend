@@ -98,7 +98,7 @@ export default function MaterialsTab() {
 
   useEffect(() => {
     setCategories(fakeMaterials);
-  }, [fakeMaterials]);
+  }, []);
 
   return (
     <ViewWrapper>
