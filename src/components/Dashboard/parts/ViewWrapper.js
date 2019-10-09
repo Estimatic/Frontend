@@ -13,7 +13,7 @@ export const ViewWrapper = styled.div`
     font-weight: 300;
     font-size: 24px;
     margin: 0;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
     color: rgba(0, 0, 0, 0.5);
   }
 

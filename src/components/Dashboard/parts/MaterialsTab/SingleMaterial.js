@@ -79,7 +79,6 @@ const BottomWrapper = styled.div`
   width: 100%;
   box-sizing: border-box;
   padding: 8px;
-  background: rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
   img {
@@ -101,7 +100,7 @@ const BottomRightWrapper = styled.div`
     position: absolute;
     margin: 0;
     top: 4px;
-    right: 4px;
+    right: 8px;
     font-size: 20px;
     font-weight: 200;
   }

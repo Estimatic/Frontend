@@ -1,18 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import SingleMaterial from "./SingleMaterial";
 import { connect } from "react-redux";
 
+import ArrowRight from "@material-ui/icons/ArrowRight";
+import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
+
 function SingleCategory(props) {
   const { secondary_color } = props.ui.colors;
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(!open);
+  };
   return (
     <Wrapper secondary_color={secondary_color}>
+      <ArrowWrapper>
+        {open ? (
+          <StyledArrowDown onClick={handleOpen} />
+        ) : (
+          <StyledArrowRight onClick={handleOpen} />
+        )}
+      </ArrowWrapper>
       <h4>
         {props.category.name} <span>- {props.category.unit}</span>{" "}
       </h4>
-      {props.category.materials.map(mat => {
-        return <SingleMaterial material={mat} key={mat._id} />;
-      })}
+      <div style={!open ? { display: "none" } : null}>
+        {props.category.materials.map(mat => {
+          return <SingleMaterial material={mat} key={mat._id} />;
+        })}
+      </div>
     </Wrapper>
   );
 }
@@ -35,6 +51,7 @@ const Wrapper = styled.div`
   padding: 16px 0;
   margin-bottom: 16px;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  position: relative;
 
   h4 {
     font-style: normal;
@@ -52,4 +69,20 @@ const Wrapper = styled.div`
       color: #7a7a7a;
     }
   }
+`;
+
+const ArrowWrapper = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 8px;
+`;
+
+const StyledArrowRight = styled(ArrowRight)`
+  transform: scale(1.5);
+  cursor: pointer;
+`;
+
+const StyledArrowDown = styled(ArrowDropDown)`
+  transform: scale(1.5);
+  cursor: pointer;
 `;

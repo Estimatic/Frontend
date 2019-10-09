@@ -123,7 +123,7 @@ export default connect(
 
 const FormWrapper = styled.div`
   margin: auto;
-  margin-top: 136px;
+  margin-top: 104px;
   margin-bottom: 0px;
   width: 90%;
   max-width: 450px;
