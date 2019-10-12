@@ -4,15 +4,15 @@ import { Cover } from "../Cover";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-// import Swal from "sweetalert2";
+import { createCategory } from "../../../../actions/categories";
+
+import Swal from "sweetalert2";
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Create from "@material-ui/icons/Create";
 import SignalCellular4Bar from "@material-ui/icons/SignalCellular4Bar";
-
-import { createCustomer } from "../../../../actions/customers";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -51,6 +51,23 @@ function AddCategory(props) {
               company_id: company_id
             };
             console.log(newCat);
+            props.createCategory(newCat).then(res => {
+              if (res) {
+                props.history.push("/app/materials");
+                Swal.fire(
+                  "Success!",
+                  `We've created your new category. You can now add products to this category and use them in your estimates.`,
+                  "success"
+                );
+              } else {
+                props.history.push("/app/materials");
+                Swal.fire(
+                  "Oops!",
+                  "There was an issue creating your category.",
+                  "warning"
+                );
+              }
+            });
           }}
         >
           <div className={classes.margin}>
@@ -118,7 +135,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { createCustomer }
+  { createCategory }
 )(withRouter(AddCategory));
 
 const FormWrapper = styled.div`
