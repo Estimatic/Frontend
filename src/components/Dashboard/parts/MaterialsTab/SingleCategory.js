@@ -71,7 +71,7 @@ const Wrapper = styled.div`
 
   h4 {
     font-style: normal;
-    font-size: 24px;
+    font-size: 20px;
     margin: 0;
     text-align: center;
     color: ${props => props.secondary_color || "#7A7A7A"};
