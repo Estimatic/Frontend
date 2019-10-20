@@ -11,7 +11,11 @@ import Swal from "sweetalert2";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
+
 import Create from "@material-ui/icons/Create";
+import Description from "@material-ui/icons/Description";
+import ArrowDropUp from "@material-ui/icons/ArrowDropUp";
+import Grade from "@material-ui/icons/Grade";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -23,8 +27,24 @@ function AddMaterial(props) {
   const { side_bar_color, secondary_color } = props.ui.colors;
 
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [grade, setGrade] = useState("");
 
   const classes = useStyles();
+
+  const checkCorrectGrade = checkedGrade => {
+    if (
+      checkedGrade === "A" ||
+      checkedGrade === "B" ||
+      checkedGrade === "C" ||
+      checkedGrade === "D" ||
+      checkedGrade === "F"
+    ) {
+      return true;
+    }
+    return false;
+  };
 
   return (
     <Cover
@@ -42,6 +62,26 @@ function AddMaterial(props) {
         <form
           onSubmit={e => {
             e.preventDefault();
+            // check for correct grade, should just change to drop down
+            if (!checkCorrectGrade(grade)) {
+              Swal.fire(
+                "Oops!",
+                "'grade' must be one of the following: A, B, C, D, F.",
+                "warning"
+              );
+              return;
+            }
+
+            const newMaterial = {
+              grade,
+              name,
+              description,
+              quantity,
+              photoUrl: "",
+              category_id: props.match.params.id
+            };
+
+            console.log(newMaterial);
           }}
         >
           <div className={classes.margin}>
@@ -63,9 +103,71 @@ function AddMaterial(props) {
               </Grid>
             </Grid>
           </div>
+          <div className={classes.margin}>
+            <Grid container spacing={2} alignItems="flex-end">
+              <Grid item>
+                <Description />
+              </Grid>
+              <Grid item style={{ width: "100%", maxWidth: "300px" }}>
+                <TextField
+                  required={true}
+                  type="text"
+                  fullWidth={true}
+                  value={description}
+                  onChange={e => {
+                    setDescription(e.target.value);
+                  }}
+                  label="description"
+                />
+              </Grid>
+            </Grid>
+          </div>
+          <div className={classes.margin}>
+            <Grid container spacing={2} alignItems="flex-end">
+              <Grid item>
+                <ArrowDropUp />
+              </Grid>
+              <Grid item style={{ width: "100%", maxWidth: "300px" }}>
+                <TextField
+                  required={true}
+                  type="number"
+                  fullWidth={true}
+                  value={quantity}
+                  onChange={e => {
+                    setQuantity(e.target.value);
+                  }}
+                  label="quantity"
+                />
+              </Grid>
+            </Grid>
+          </div>
+          <div className={classes.margin}>
+            <Grid container spacing={2} alignItems="flex-end">
+              <Grid item>
+                <Grade />
+              </Grid>
+              <Grid item style={{ width: "100%", maxWidth: "300px" }}>
+                <TextField
+                  required={true}
+                  type="text"
+                  fullWidth={true}
+                  value={grade}
+                  onChange={e => {
+                    setGrade(e.target.value);
+                  }}
+                  label="grade"
+                />
+              </Grid>
+            </Grid>
+          </div>
 
           <Directions>
-            <p>This material will be added to it's corresponding category.</p>
+            <p>
+              This material will be added to it's corresponding category.
+              "quantity" is measured in the item's given unit. For example, if
+              you enter "10" and this item is measured in "lbs", we'll calculate
+              each of this item as "10 lbs" when creating your estimate.
+            </p>
           </Directions>
           <button type="submit">Add Category</button>
         </form>
