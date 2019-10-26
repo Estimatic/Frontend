@@ -4,7 +4,7 @@ import { Cover } from "../Cover";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { createCategory } from "../../../../actions/categories";
+import { createMaterial } from "../../../../actions/categories";
 
 import Swal from "sweetalert2";
 
@@ -81,9 +81,52 @@ function AddMaterial(props) {
               category_id: props.match.params.id
             };
 
-            console.log(newMaterial);
+            props
+              .createMaterial(newMaterial)
+              .then(res => {
+                if (res) {
+                  Swal.fire(
+                    "Success!",
+                    "We've created your new material!",
+                    "success"
+                  );
+                } else {
+                  Swal.fire(
+                    "Oops!",
+                    "There was an error creating your new material.",
+                    "warning"
+                  );
+                }
+                props.history.push("/app/materials");
+              })
+              .catch(() => {
+                Swal.fire(
+                  "Oops!",
+                  "There was an error creating your new material.",
+                  "warning"
+                );
+                props.history.push("/app/materials");
+              });
           }}
         >
+          <EditImageWrapper>
+            <img
+              style={{
+                width: "120px",
+                height: "120px",
+                borderRadius: "50%",
+                margin: "auto",
+                marginBottom: "16px",
+                marginTop: "36px"
+              }}
+              alt="user avatar"
+              src={
+                false || "https://www.legaseeds.com/assets/user_placeholder.svg"
+              }
+            />
+            <input type="file" />
+          </EditImageWrapper>
+
           <div className={classes.margin}>
             <Grid container spacing={2} alignItems="flex-end">
               <Grid item>
@@ -185,12 +228,12 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { createCategory }
+  { createMaterial }
 )(withRouter(AddMaterial));
 
 const FormWrapper = styled.div`
   margin: auto;
-  margin-top: 104px;
+  margin-top: 64px;
   margin-bottom: 0px;
   width: 90%;
   max-width: 450px;
@@ -252,4 +295,12 @@ export const Directions = styled.div`
     margin: 0;
     padding: 0;
   }
+`;
+
+const EditImageWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;

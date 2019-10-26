@@ -22,8 +22,6 @@ function MaterialsTab(props) {
   useEffect(() => {
     const fetchedCategories = props.categories;
 
-    // currently faking a materials array for each cat until thats working
-    fetchedCategories.map(cat => (cat.materials = []));
     setCategories(fetchedCategories);
   }, [props.categories]);
 
