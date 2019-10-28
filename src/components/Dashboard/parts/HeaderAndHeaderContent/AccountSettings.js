@@ -21,6 +21,8 @@ import {
   updatePassword
 } from "../../../../actions/auth";
 
+import { storage } from "../../../../firebase.js";
+
 import Swal from "sweetalert2";
 
 const useStyles = makeStyles(theme => ({
@@ -43,6 +45,52 @@ function AccountSettings(props) {
   const [oldPass, setOldPass] = useState("");
   const [newPass, setNewPass] = useState("");
   const [rtNewPass, setRtNewPass] = useState("");
+
+  //image upload stuff, can copy/paste to other components which need img upload
+  const [image, setImage] = useState(null);
+  const [url, setUrl] = useState("");
+  const [progress, setProgress] = useState(0);
+
+  const handleChange = e => {
+    if (e.target.files[0]) {
+      const newImage = e.target.files[0];
+      setImage(newImage);
+    }
+  };
+
+  const handleUpload = () => {
+    const uploadTask = storage
+      .ref(`images/${props.user._id}/${image.name}`)
+      .put(image);
+    uploadTask.on(
+      "state_changed",
+      snapshot => {
+        // progrss function ....
+        const newProgress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgress(newProgress);
+      },
+      error => {
+        // error function ....
+        console.log(error);
+      },
+      () => {
+        // complete function ....
+        storage
+          .ref("images")
+          .child(props.user._id)
+          .child(image.name)
+          .getDownloadURL()
+          .then(newUrl => {
+            setUrl(newUrl);
+          });
+      }
+    );
+  };
+  // ******
+  // ******
+  // ******
 
   const classes = useStyles();
 
@@ -96,11 +144,17 @@ function AccountSettings(props) {
               }}
               alt="user avatar"
               src={
-                props.user.photoUrl ||
-                "https://www.legaseeds.com/assets/user_placeholder.svg"
+                url
+                  ? url
+                  : props.user.photoUrl
+                  ? props.user.photoUrl
+                  : "https://www.legaseeds.com/assets/user_placeholder.svg"
               }
             />
-            <input type="file" />
+            <input type="file" onChange={handleChange} />
+
+            <progress value={progress} max={100} />
+            <button onClick={handleUpload}>upload</button>
           </EditImageWrapper>
           <EditInputsWrapper>
             <div className={classes.margin}>
@@ -149,7 +203,8 @@ function AccountSettings(props) {
                 e.preventDefault();
                 const userUpdates = {
                   email,
-                  full_name: fullName
+                  full_name: fullName,
+                  photoUrl: url
                 };
                 props.updateUser(userUpdates, props.user._id).then(res => {
                   if (res) {
