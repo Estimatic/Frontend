@@ -2,14 +2,14 @@ import firebase from "firebase/app";
 import "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD91RxF5ohDshtPVktFgiICPkAp_79KGw0",
-  authDomain: "estimatic-d8b9c.firebaseapp.com",
-  databaseURL: "https://estimatic-d8b9c.firebaseio.com",
-  projectId: "estimatic-d8b9c",
-  storageBucket: "estimatic-d8b9c.appspot.com",
-  messagingSenderId: "947802338382",
-  appId: "1:947802338382:web:343b4608890646926cff1f",
-  measurementId: "G-XEXQJBGHX5"
+  apiKey: process.env.REACT_APP_FB_APIKEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DB_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MSG_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
