@@ -14,8 +14,8 @@ import Swal from "sweetalert2";
 function DisplaySettings(props) {
   const { main_color, side_bar_color, secondary_color } = props.ui.colors;
 
-  const [mainColor, setMainColor] = useState("#3B49B8");
-  const [secondayColor, setSecondayColor] = useState("#3B49B8");
+  const [mainColor, setMainColor] = useState("#0D076F");
+  const [secondayColor, setSecondayColor] = useState("#0D076F");
   const [sideBarFont, setSideBarFont] = useState("#FFFFFF");
 
   useEffect(() => {

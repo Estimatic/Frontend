@@ -279,7 +279,7 @@ const FormWrapper = styled.div`
   }
 `;
 
-const companyColor = "#3B49B8";
+const companyColor = "#0D076F";
 export const Directions = styled.div`
   margin: auto;
   color: rgba(0, 0, 0, 0.4);

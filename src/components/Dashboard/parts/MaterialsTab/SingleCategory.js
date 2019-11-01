@@ -29,7 +29,7 @@ function SingleCategory(props) {
         </h4>
         <Button
           style={{
-            color: secondary_color || "#3B49B8"
+            color: secondary_color || "#0D076F"
           }}
           size="small"
           onClick={() => {

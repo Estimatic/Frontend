@@ -38,7 +38,7 @@ const useStyles = makeStyles({
   margin: {
     margin: "16px",
     marginRight: "0",
-    background: "#3B49B8",
+    background: "#0D076F",
     color: "white"
   }
 });
@@ -92,7 +92,7 @@ function EmployeesTab(props) {
                     key={column.id}
                     style={{
                       minWidth: column.minWidth,
-                      color: secondary_color || "#3B49B8"
+                      color: secondary_color || "#0D076F"
                     }}
                   >
                     {column.label}
@@ -151,7 +151,7 @@ function EmployeesTab(props) {
       >
         <Button
           style={{
-            backgroundColor: secondary_color || "#3B49B8",
+            backgroundColor: secondary_color || "#0D076F",
             color: side_bar_color || "white"
           }}
           variant="contained"

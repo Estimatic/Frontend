@@ -9,7 +9,7 @@ const useStyles = makeStyles({
   margin: {
     margin: "0",
     marginBottom: "16px",
-    background: "#3B49B8",
+    background: "#0D076F",
     color: "white"
   }
 });
@@ -21,7 +21,7 @@ function ActionBar(props) {
     <div>
       <Button
         style={{
-          backgroundColor: secondary_color || "#3B49B8",
+          backgroundColor: secondary_color || "#0D076F",
           color: side_bar_color || "white"
         }}
         variant="contained"

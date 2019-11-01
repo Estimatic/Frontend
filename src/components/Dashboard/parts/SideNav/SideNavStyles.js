@@ -12,7 +12,7 @@ export const breakPointOne = "900px";
 // export const breakPointTwo = "640px";
 
 // const maxScreenWidth = "1300px";
-// const companyColor = "#3B49B8";
+// const companyColor = "#0D076F";
 
 export const SideBarWrapper = styled.div`
   width: ${props => props.sideNavWidth};
@@ -24,14 +24,7 @@ export const SideBarWrapper = styled.div`
   top: 0;
   margin: 0;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.55);
-  background: ${props =>
-    props.bgColor ||
-    `linear-gradient(
-    186deg,
-    rgba(72, 165, 209, 1) 0%,
-    rgba(64, 120, 196, 1) 19%,
-    rgba(59, 73, 184, 1) 94%
-  )`};
+  background: ${props => props.bgColor || `#0D076F`};
   padding: 0 16px;
 
   @media (max-width: ${breakPointOne}) {

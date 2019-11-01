@@ -4,7 +4,7 @@ export const breakPointOne = "900px";
 export const breakPointTwo = "640px";
 
 const maxScreenWidth = "1300px";
-const companyColor = "#3B49B8";
+const companyColor = "#0D076F";
 // const companyRed = "#BF273A";
 // const companyGreen = "#5A9493";
 
