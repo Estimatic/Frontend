@@ -31,6 +31,8 @@ export const createCustomer = customer => {
   };
 };
 
+// this probably shouldnt be pinging for coordinates EVERY time
+// gotta think through exactly what the best move for this will be
 export const getAllCompanyCustomers = companyId => {
   return async dispatch => {
     try {
@@ -38,7 +40,24 @@ export const getAllCompanyCustomers = companyId => {
         `${dbEndpoint}/api/customers/company/${companyId}`
       );
 
-      dispatch({ type: GET_COMPANY_CUSTOMERS, payload: allCustomers.data });
+      const customersWithGeocodedDate = await Promise.all(
+        allCustomers.data.map(async customer => {
+          const queryString = customer.address.split(" ").join("_");
+
+          const geocodedCoordinates = await axios.get(
+            `https://api.mapbox.com/geocoding/v5/mapbox.places/${queryString}.json?access_token=${process.env.REACT_APP_MAP_BOX_TOKEN}`
+          );
+          return {
+            ...customer,
+            coordinates: geocodedCoordinates.data.features[0].center
+          };
+        })
+      );
+
+      dispatch({
+        type: GET_COMPANY_CUSTOMERS,
+        payload: customersWithGeocodedDate
+      });
       return true;
     } catch (err) {
       return false;
