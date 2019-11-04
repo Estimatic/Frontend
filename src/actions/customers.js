@@ -42,15 +42,22 @@ export const getAllCompanyCustomers = companyId => {
 
       const customersWithGeocodedDate = await Promise.all(
         allCustomers.data.map(async customer => {
-          const queryString = customer.address.split(" ").join("_");
+          try {
+            const queryString = customer.address.split(" ").join("_");
 
-          const geocodedCoordinates = await axios.get(
-            `https://api.mapbox.com/geocoding/v5/mapbox.places/${queryString}.json?access_token=${process.env.REACT_APP_MAP_BOX_TOKEN}`
-          );
-          return {
-            ...customer,
-            coordinates: geocodedCoordinates.data.features[0].center
-          };
+            const geocodedCoordinates = await axios.get(
+              `https://api.mapbox.com/geocoding/v5/mapbox.places/${queryString}.json?access_token=${process.env.REACT_APP_MAP_BOX_TOKEN}`
+            );
+            return {
+              ...customer,
+              coordinates: geocodedCoordinates.data.features[0].center
+            };
+          } catch (err) {
+            return {
+              ...customer,
+              coordinates: [0.0, 0.0]
+            };
+          }
         })
       );
 
