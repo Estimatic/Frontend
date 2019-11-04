@@ -1,6 +1,7 @@
-import { GET_COMPANY_CUSTOMERS } from "../actions/customers";
+import { GET_COMPANY_CUSTOMERS, CREATE_CUSTOMER } from "../actions/customers";
 
 const initialState = {
+  shouldFetchCustomers: true,
   customers: []
 };
 
@@ -9,7 +10,14 @@ const customerReducer = (state = initialState, action) => {
     case GET_COMPANY_CUSTOMERS:
       return {
         ...state,
-        customers: action.payload
+        customers: action.payload,
+        shouldFetchCustomers: false
+      };
+
+    case CREATE_CUSTOMER:
+      return {
+        ...state,
+        shouldFetchCustomers: true
       };
 
     default:

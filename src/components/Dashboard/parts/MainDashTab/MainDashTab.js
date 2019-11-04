@@ -36,13 +36,14 @@ function MainDashTab(props) {
     });
   };
 
-  const { companyId, getAllCompanyCustomers } = props;
+  const { companyId, getAllCompanyCustomers, shouldFetchCustomers } = props;
 
   useEffect(() => {
-    if (companyId) {
+    if (companyId && shouldFetchCustomers) {
+      console.log("fetched customers");
       getAllCompanyCustomers(companyId);
     }
-  }, [companyId, getAllCompanyCustomers]);
+  }, [companyId, getAllCompanyCustomers, shouldFetchCustomers]);
 
   return (
     <ViewWrapper>
@@ -87,6 +88,7 @@ function MainDashTab(props) {
 const mapStatToProps = state => {
   return {
     customers: state.customers.customers,
+    shouldFetchCustomers: state.customers.shouldFetchCustomers,
     userId: state.auth.user._id,
     companyId: state.auth.user.company_id
   };

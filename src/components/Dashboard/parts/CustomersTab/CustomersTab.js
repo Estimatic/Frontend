@@ -53,7 +53,7 @@ function CustomersTab(props) {
   const { side_bar_color, secondary_color } = props.ui.colors;
 
   //turns employees into correct format
-  const { customers } = props;
+  const { customers, shouldFetchCustomers } = props;
   useEffect(() => {
     const newRows = customers.map(customer => {
       return createData(
@@ -68,10 +68,11 @@ function CustomersTab(props) {
   const { companyId, getAllCompanyCustomers } = props;
 
   useEffect(() => {
-    if (companyId) {
+    if (companyId && shouldFetchCustomers) {
+      console.log("fetched customers");
       getAllCompanyCustomers(companyId);
     }
-  }, [companyId, getAllCompanyCustomers]);
+  }, [companyId, getAllCompanyCustomers, shouldFetchCustomers]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -177,7 +178,8 @@ const mapStateToProps = state => {
   return {
     companyId: state.auth.user["company_id"],
     ui: { ...state.ui },
-    customers: state.customers.customers
+    customers: state.customers.customers,
+    shouldFetchCustomers: state.customers.shouldFetchCustomers
   };
 };
 
