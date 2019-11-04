@@ -60,7 +60,7 @@ function AccountSettings(props) {
 
   const handleUpload = () => {
     const uploadTask = storage
-      .ref(`images/${props.user._id}/${image.name}`)
+      .ref(`images/${props.user.company_id}/${props.user._id}/${image.name}`)
       .put(image);
     uploadTask.on(
       "state_changed",
@@ -79,6 +79,7 @@ function AccountSettings(props) {
         // complete function ....
         storage
           .ref("images")
+          .child(props.user.company_id)
           .child(props.user._id)
           .child(image.name)
           .getDownloadURL()
