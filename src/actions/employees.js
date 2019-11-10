@@ -1,7 +1,7 @@
 import axios from "axios";
 const dbEndpoint = process.env.DB_ENDPOINT || "http://localhost:5000";
 
-export const GET_EMPLOYEES_SUCCES = "GET_EMPLOYEES_SUCCES";
+export const GET_EMPLOYEES_SUCCESS = "GET_EMPLOYEES_SUCCESS";
 export const GET_EMPLOYEES_FAIL = "GET_EMPLOYEES_FAIL";
 
 export const INVITE_EMPLOYEE_FAIL = "INVITE_EMPLOYEE_FAIL";
@@ -28,7 +28,7 @@ export const getAllCompanyEmployees = companyId => {
         `${dbEndpoint}/api/users/company/${companyId}`
       );
 
-      dispatch({ type: GET_EMPLOYEES_SUCCES, payload: allEmployees.data });
+      dispatch({ type: GET_EMPLOYEES_SUCCESS, payload: allEmployees.data });
     } catch (err) {
       dispatch({ type: GET_EMPLOYEES_FAIL });
     }

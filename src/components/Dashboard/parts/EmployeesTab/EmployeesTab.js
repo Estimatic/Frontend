@@ -60,13 +60,13 @@ function EmployeesTab(props) {
     setRows(newRows);
   }, [employees]);
 
-  const { companyId, getAllCompanyEmployees } = props;
-
+  const { companyId, getAllCompanyEmployees, shouldFetchEmployees } = props;
   useEffect(() => {
-    if (companyId) {
+    if (companyId && shouldFetchEmployees) {
+      console.log("fetching employees");
       getAllCompanyEmployees(companyId);
     }
-  }, [companyId, getAllCompanyEmployees]);
+  }, [companyId, getAllCompanyEmployees, shouldFetchEmployees]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -172,7 +172,8 @@ const mapStateToProps = state => {
   return {
     employees: state.employees,
     companyId: state.auth.user["company_id"],
-    ui: { ...state.ui }
+    ui: { ...state.ui },
+    shouldFetchEmployees: state.employees.shouldFetchEmployees
   };
 };
 
