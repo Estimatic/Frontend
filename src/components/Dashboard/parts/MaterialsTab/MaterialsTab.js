@@ -11,12 +11,13 @@ function MaterialsTab(props) {
 
   // fetch categories and materials for a company
   const { company_id } = props.user;
-  const { getCompantCategories } = props;
+  const { getCompantCategories, shouldFetchCategories } = props;
   useEffect(() => {
-    if (company_id) {
+    if (company_id && shouldFetchCategories) {
+      console.log("fetching categories and materials");
       getCompantCategories(company_id);
     }
-  }, [company_id, getCompantCategories]);
+  }, [company_id, getCompantCategories, shouldFetchCategories]);
 
   // set categories to state
   useEffect(() => {
@@ -42,7 +43,8 @@ function MaterialsTab(props) {
 const mapStateToProps = state => {
   return {
     user: { ...state.auth.user },
-    categories: state.categories.categories
+    categories: state.categories.categories,
+    shouldFetchCategories: state.categories.shouldFetchCategories
   };
 };
 

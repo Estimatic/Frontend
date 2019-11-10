@@ -1,7 +1,12 @@
-import { GET_COMPANY_CATEGORIES } from "../actions/categories";
+import {
+  GET_COMPANY_CATEGORIES,
+  CREATE_CATEGORY,
+  CREATE_MATERIAL
+} from "../actions/categories";
 
 const initialState = {
-  categories: []
+  categories: [],
+  shouldFetchCategories: true
 };
 
 const categoryReducer = (state = initialState, action) => {
@@ -9,7 +14,20 @@ const categoryReducer = (state = initialState, action) => {
     case GET_COMPANY_CATEGORIES:
       return {
         ...state,
-        categories: action.payload
+        categories: action.payload,
+        shouldFetchCategories: false
+      };
+
+    case CREATE_MATERIAL:
+      return {
+        ...state,
+        shouldFetchCategories: true
+      };
+
+    case CREATE_CATEGORY:
+      return {
+        ...state,
+        shouldFetchCategories: true
       };
 
     default:
