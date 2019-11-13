@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 function SingleMaterial(props) {
-  const { name, description, photoUrl, grade } = props.material;
+  const { name, description, photoUrl, grade, price } = props.material;
 
   const returnPropperGrade = grade => {
     if (grade === "A") {
@@ -11,7 +11,7 @@ function SingleMaterial(props) {
     } else if (grade === "B") {
       return <h6 style={{ color: "blue" }}>{grade}</h6>;
     } else if (grade === "C") {
-      return <h6 style={{ color: "yellow" }}>{grade}</h6>;
+      return <h6 style={{ color: "#ff9b05" }}>{grade}</h6>;
     } else if (grade === "D") {
       return <h6 style={{ color: "orange" }}>{grade}</h6>;
     } else if (grade === "F") {
@@ -34,6 +34,10 @@ function SingleMaterial(props) {
         <BottomRightWrapper>
           <h5>description:</h5>
           <p>{description}</p>
+          <p>
+            <span>price: </span>${price ? price : 0}
+          </p>
+
           {returnPropperGrade(grade)}
         </BottomRightWrapper>
       </BottomWrapper>

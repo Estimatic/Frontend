@@ -16,6 +16,7 @@ import Create from "@material-ui/icons/Create";
 import Description from "@material-ui/icons/Description";
 import ArrowDropUp from "@material-ui/icons/ArrowDropUp";
 import Grade from "@material-ui/icons/Grade";
+import AttachMoney from "@material-ui/icons/AttachMoney";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -30,6 +31,7 @@ function AddMaterial(props) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState("");
   const [grade, setGrade] = useState("");
+  const [price, setPrice] = useState(0);
 
   const classes = useStyles();
 
@@ -77,6 +79,7 @@ function AddMaterial(props) {
               name,
               description,
               quantity,
+              price,
               photoUrl: "",
               category_id: props.match.params.id
             };
@@ -199,6 +202,26 @@ function AddMaterial(props) {
                     setGrade(e.target.value);
                   }}
                   label="grade"
+                />
+              </Grid>
+            </Grid>
+          </div>
+
+          <div className={classes.margin}>
+            <Grid container spacing={2} alignItems="flex-end">
+              <Grid item>
+                <AttachMoney />
+              </Grid>
+              <Grid item style={{ width: "100%", maxWidth: "300px" }}>
+                <TextField
+                  required={true}
+                  type="number"
+                  fullWidth={true}
+                  value={price}
+                  onChange={e => {
+                    setPrice(e.target.value);
+                  }}
+                  label="price"
                 />
               </Grid>
             </Grid>
