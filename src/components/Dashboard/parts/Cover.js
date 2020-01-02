@@ -9,6 +9,6 @@ export const Cover = styled.div`
   top: 0;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.5);
-  overflow-y: scroll;
+  overflow-y: overlay;
   overflow-x: hidden;
 `;

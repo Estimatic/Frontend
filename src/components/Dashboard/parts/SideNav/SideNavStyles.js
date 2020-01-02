@@ -19,7 +19,7 @@ export const SideBarWrapper = styled.div`
   max-width: 230px;
   height: 100vh;
   position: sticky;
-  overflow-y: scroll;
+  overflow-y: overlay;
   color: ${props => props.fontColor || "white"};
   top: 0;
   margin: 0;

@@ -177,7 +177,7 @@ const DisplayWrapper = styled.div`
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   color: rgba(0, 0, 0, 0.4);
   max-height: 80vh;
-  overflow: scroll;
+  overflow: auto;
 
   hr {
     opacity: 0.9;
