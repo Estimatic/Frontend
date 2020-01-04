@@ -17,6 +17,7 @@ import HelpPage from "./parts/HeaderAndHeaderContent/HelpPage";
 import CreateCustomer from "./parts/CustomersTab/CreateCustomer";
 import AddCategory from "./parts/MaterialsTab/AddCategory";
 import AddMaterial from "./parts/MaterialsTab/AddMaterial";
+import AddProject from "./parts/ProjectsTab/AddProject";
 
 import CreateEmployee from "./parts/EmployeesTab/CreateEmployee";
 
@@ -81,6 +82,8 @@ class Dashboard extends React.Component {
 
           <Route exact path="/app" component={MainDashTab} />
           <Route exact path="/app/projects" component={ProjectsTab} />
+          <Route exact path="/app/projects/create" component={AddProject} />
+
           <Route path="/app/customers" component={CustomersTab} />
           <Route path="/app/customers/create" component={CreateCustomer} />
 

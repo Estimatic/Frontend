@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import { ViewWrapper } from "../ViewWrapper";
 import {
@@ -77,7 +78,12 @@ function ProjectsTab(props) {
     <ViewWrapper>
       <h3>Your Projects</h3>
       <hr style={{ marginBottom: "16px" }} />
-      <NewProjectButton colors={props.ui.colors}>Add Project</NewProjectButton>
+      <NewProjectButton
+        onClick={() => props.history.push("/app/projects/create")}
+        colors={props.ui.colors}
+      >
+        Add Project
+      </NewProjectButton>
 
       {fakeData.map(project => {
         return (
@@ -102,4 +108,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {}
-)(ProjectsTab);
+)(withRouter(ProjectsTab));
