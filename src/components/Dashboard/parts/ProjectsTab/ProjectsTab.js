@@ -1,5 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import { ViewWrapper } from "../ViewWrapper";
+import {
+  NewProjectButton,
+  SingleProjectChip,
+  SingleProjectChipStatus,
+  SingleProjectChipInfo
+} from "./ProjectsStyles";
 
 const fakeData = [
   {
@@ -62,11 +70,36 @@ const fakeData = [
   }
 ];
 
-export default function ProjectsTab() {
+function ProjectsTab(props) {
+  // const { main_color, secondary_color } = props.ui.colors;
+
   return (
     <ViewWrapper>
       <h3>Your Projects</h3>
-      <hr />
+      <hr style={{ marginBottom: "16px" }} />
+      <NewProjectButton colors={props.ui.colors}>Add Project</NewProjectButton>
+
+      {fakeData.map(project => {
+        return (
+          <SingleProjectChip key={project.id}>
+            <SingleProjectChipStatus status={project.projectStatus} />
+            <SingleProjectChipInfo>
+              <p>{project.projectName}</p>
+            </SingleProjectChipInfo>
+          </SingleProjectChip>
+        );
+      })}
     </ViewWrapper>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    ui: { ...state.ui }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(ProjectsTab);
