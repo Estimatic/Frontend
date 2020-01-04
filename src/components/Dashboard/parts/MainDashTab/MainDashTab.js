@@ -56,12 +56,6 @@ function MainDashTab(props) {
         mapStyle="mapbox://styles/thomashessburg/ck2e8ztad251y1co1klj335tz"
         mapboxApiAccessToken={process.env.REACT_APP_MAP_BOX_TOKEN}
       >
-        {/* 
-      add markers here
-      check around 8 minutes in this video for further directions -> https://www.youtube.com/watch?v=JJatzkPcmoI
-      heres info on geocoding -> https://docs.mapbox.com/help/glossary/geocoding/ -> https://docs.mapbox.com/help/how-mapbox-works/geocoding/
-      need to take user addresses and turn them into lat/lons
-      */}
         {props.customers.map(customer => {
           return (
             <Marker

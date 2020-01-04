@@ -68,20 +68,11 @@ class Dashboard extends React.Component {
             setSideNavWidth={this.setSideNavWidth}
             curWidth={this.state.sideNavWidth}
           />
-          {/* <h4>Welcome, {this.props.user.full_name}</h4>
-          <button
-            onClick={e => {
-              localStorage.removeItem("token");
-              this.props.history.push("/");
-            }}
-          >
-            logout
-          </button> */}
           <Route path="/app/employees" component={EmployeesTab} />
           <Route path="/app/employees/invite" component={CreateEmployee} />
 
           <Route exact path="/app" component={MainDashTab} />
-          <Route exact path="/app/projects" component={ProjectsTab} />
+          <Route path="/app/projects" component={ProjectsTab} />
           <Route exact path="/app/projects/create" component={AddProject} />
 
           <Route path="/app/customers" component={CustomersTab} />
