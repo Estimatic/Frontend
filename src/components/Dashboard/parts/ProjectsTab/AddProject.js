@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120
+    minWidth: 240
   },
   selectEmpty: {
     marginTop: theme.spacing(2)
@@ -37,13 +37,33 @@ function AddProject(props) {
   const [address, setAddress] = useState("");
   const [projectStatus, setProjectStatus] = useState("pre");
   const [dueDate, setDueDate] = useState(new Date());
-  const [customer, setCustomer] = useState({});
-  const [assignedTo, setAssignedTo] = useState({});
+  const [customer, setCustomer] = useState("select a customer");
+  const [assignedTo, setAssignedTo] = useState("assign an employee");
   // const [companyId, setCompanyId] = useState("");
 
   // ui
   const { side_bar_color, secondary_color } = props.ui.colors;
   const classes = useStyles();
+
+  const handelSetCustomer = e => {
+    if (e.target.value === "select a customer") {
+      setCustomer("select a customer");
+      return;
+    }
+    if (!projectName) {
+      // if value of projectName is an empty string, create a default project name with info we have
+      const currentCustomer = props.customers.filter(
+        curCustomer =>
+          `${curCustomer.full_name} - ${curCustomer.address.substring(
+            0,
+            8
+          )}...` === e.target.value
+      )[0];
+      setProjectName(`${currentCustomer.full_name} Project`);
+      setAddress(currentCustomer.address);
+    }
+    setCustomer(e.target.value);
+  };
 
   return (
     <Cover
@@ -57,15 +77,110 @@ function AddProject(props) {
         <form
           onSubmit={e => {
             e.preventDefault();
+            // handel unassigned employees and customers
+            if (
+              assignedTo === "assign an employee" ||
+              customer === "select a customer"
+            ) {
+              alert("please provide both a customer and an assigned employee");
+              return;
+            }
+
+            // find coresponding ID for assigned employees and customers
+            const assignedEmployeeId = props.employees.filter(
+              employee =>
+                `${employee.full_name} - ${employee._id}` === assignedTo
+            )[0]._id;
+
+            const assignedCustomerId = props.customers.filter(
+              curCustomer =>
+                `${curCustomer.full_name} - ${curCustomer.address.substring(
+                  0,
+                  8
+                )}...` === customer
+            )[0]._id;
+
             const newProject = {
               projectName,
               address,
               projectStatus,
-              dueDate: Date.parse(dueDate)
+              dueDate: Date.parse(dueDate),
+              assignedTo: assignedEmployeeId,
+              customer: assignedCustomerId
             };
             console.log(newProject);
           }}
         >
+          <div className={classes.margin}>
+            <Grid container spacing={2} alignItems="flex-end">
+              <Grid item>
+                <Person />
+              </Grid>
+              <Grid item>
+                <FormControl className={classes.formControl}>
+                  <InputLabel>Assign Employee</InputLabel>
+                  <Select
+                    value={assignedTo}
+                    onChange={e => setAssignedTo(e.target.value)}
+                  >
+                    <MenuItem value="assign an employee">
+                      assign an employee
+                    </MenuItem>
+                    {props.employees.map(employee => {
+                      // a note to future me, setting the value as `${employee.full_name} - ${employee._id}` as opposed to the full customer object
+                      // because of some limitations with the Select component. Need the value to === an actual Options value to
+                      // be a controlled component
+                      return (
+                        <MenuItem
+                          key={employee._id}
+                          value={`${employee.full_name} - ${employee._id}`}
+                        >
+                          {employee.full_name}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+              </Grid>
+            </Grid>
+          </div>
+
+          <div className={classes.margin}>
+            <Grid container spacing={2} alignItems="flex-end">
+              <Grid item>
+                <Person />
+              </Grid>
+              <Grid item>
+                <FormControl className={classes.formControl}>
+                  <InputLabel>Choose Customer</InputLabel>
+                  <Select value={customer} onChange={handelSetCustomer}>
+                    <MenuItem value="select a customer">
+                      select a customer
+                    </MenuItem>
+                    {props.customers.map(customer => {
+                      // a note to future me, setting the valuve as customer.full_name as opposed to the full customer object
+                      // because of some limitations with the Select component. Need the value to === an actual options value to
+                      // be a controlled component
+                      return (
+                        <MenuItem
+                          key={customer._id}
+                          value={`${
+                            customer.full_name
+                          } - ${customer.address.substring(0, 8)}...`}
+                        >
+                          {/* including a bit of the address in case of multiple customers w same name */}
+                          {`${
+                            customer.full_name
+                          } - ${customer.address.substring(0, 8)}...`}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+              </Grid>
+            </Grid>
+          </div>
+
           <div className={classes.margin}>
             <Grid container spacing={2} alignItems="flex-end">
               <Grid item>
@@ -158,7 +273,9 @@ function AddProject(props) {
 const mapStateToProps = state => {
   return {
     user: { ...state.auth.user },
-    ui: { ...state.ui }
+    ui: { ...state.ui },
+    customers: state.customers.customers,
+    employees: state.employees.employees
   };
 };
 
