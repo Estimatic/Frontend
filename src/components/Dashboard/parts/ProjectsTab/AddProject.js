@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Cover } from "../Cover";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -281,7 +281,7 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {}
-)(withRouter(AddProject));
+)(AddProject);
 
 const FormWrapper = styled.div`
   margin: auto;

@@ -71,7 +71,7 @@ export default function withData(WrappedComponent) {
       }
     }, [companyId, getCompanyCategories, shouldFetchCategories, pathname]);
 
-    return <WrappedComponent />;
+    return <WrappedComponent history={props.history} />;
   };
 
   const mapStateToProps = state => {
