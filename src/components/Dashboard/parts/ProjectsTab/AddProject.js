@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Cover } from "../Cover";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import withData from "../../../DataFetchingHOC";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -99,11 +98,11 @@ function AddProject(props) {
             )[0]._id;
 
             const newProject = {
-              projectName,
+              project_name: projectName,
               address,
-              projectStatus,
-              dueDate: Date.parse(dueDate),
-              assignedTo: assignedEmployeeId,
+              project_status: projectStatus,
+              due_date: Date.parse(dueDate),
+              assigned_to: assignedEmployeeId,
               customer: assignedCustomerId,
               company_id: props.user.company_id
             };
@@ -279,12 +278,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default withData(
-  connect(
-    mapStateToProps,
-    {}
-  )(withRouter(AddProject))
-);
+export default connect(
+  mapStateToProps,
+  {}
+)(withRouter(AddProject));
 
 const FormWrapper = styled.div`
   margin: auto;
