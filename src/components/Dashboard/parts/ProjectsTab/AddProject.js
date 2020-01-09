@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Cover } from "../Cover";
 import { connect } from "react-redux";
 // import { withRouter } from "react-router-dom";
+import { createProject } from "../../../../actions/projects";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,6 +16,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+
+import Swal from "sweetalert2";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -106,7 +109,27 @@ function AddProject(props) {
               customer: assignedCustomerId,
               company_id: props.user.company_id
             };
-            console.log(newProject);
+            props
+              .createProject(newProject)
+              .then(res => {
+                if (res) {
+                  props.history.push("/app/projects");
+                  Swal.fire(
+                    "Success!",
+                    "We've created your new project!",
+                    "success"
+                  );
+                } else {
+                  Swal.fire(
+                    "Oops!",
+                    "There was an error creating your new project.",
+                    "warning"
+                  );
+                }
+              })
+              .catch(err =>
+                console.log("in catch: error creating project -> ", err)
+              );
           }}
         >
           <div className={classes.margin}>
@@ -280,12 +303,12 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { createProject }
 )(AddProject);
 
 const FormWrapper = styled.div`
   margin: auto;
-  margin-top: 104px;
+  margin-top: 48px;
   margin-bottom: 0px;
   width: 90%;
   max-width: 450px;

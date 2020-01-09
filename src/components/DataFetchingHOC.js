@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getAllCompanyEmployees } from "../actions/employees";
 import { getAllCompanyCustomers } from "../actions/customers";
 import { getCompanyCategories } from "../actions/categories";
+import { getAllCompanyProjects } from "../actions/projects";
 
 import { withRouter } from "react-router-dom";
 
@@ -15,7 +16,9 @@ export default function withData(WrappedComponent) {
       shouldFetchCustomers,
       getAllCompanyCustomers,
       getCompanyCategories,
-      shouldFetchCategories
+      shouldFetchCategories,
+      shouldFetchProjects,
+      getAllCompanyProjects
     } = props;
 
     const { pathname } = props.location;
@@ -71,6 +74,18 @@ export default function withData(WrappedComponent) {
       }
     }, [companyId, getCompanyCategories, shouldFetchCategories, pathname]);
 
+    // handel fetching projects
+    useEffect(() => {
+      const viewsToFetchProjects = ["/app/projects", "/app/projects/create"];
+      if (
+        viewsToFetchProjects.includes(pathname) &&
+        companyId &&
+        shouldFetchProjects
+      ) {
+        getAllCompanyProjects(companyId);
+      }
+    }, [pathname, companyId, shouldFetchProjects, getAllCompanyProjects]);
+
     return <WrappedComponent history={props.history} />;
   };
 
@@ -79,12 +94,18 @@ export default function withData(WrappedComponent) {
       shouldFetchEmployees: state.employees.shouldFetchEmployees,
       shouldFetchCustomers: state.customers.shouldFetchCustomers,
       shouldFetchCategories: state.categories.shouldFetchCategories,
+      shouldFetchProjects: state.projects.shouldFetchProjects,
       companyId: state.auth.user["company_id"]
     };
   };
 
   return connect(
     mapStateToProps,
-    { getAllCompanyCustomers, getAllCompanyEmployees, getCompanyCategories }
+    {
+      getAllCompanyCustomers,
+      getAllCompanyEmployees,
+      getCompanyCategories,
+      getAllCompanyProjects
+    }
   )(withRouter(WithData));
 }
