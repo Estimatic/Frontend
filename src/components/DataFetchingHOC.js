@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getAllCompanyEmployees } from "../actions/employees";
 import { getAllCompanyCustomers } from "../actions/customers";
+import { getCompanyCategories } from "../actions/categories";
+
 import { withRouter } from "react-router-dom";
 
 export default function withData(WrappedComponent) {
@@ -11,7 +13,9 @@ export default function withData(WrappedComponent) {
       getAllCompanyEmployees,
       shouldFetchEmployees,
       shouldFetchCustomers,
-      getAllCompanyCustomers
+      getAllCompanyCustomers,
+      getCompanyCategories,
+      shouldFetchCategories
     } = props;
 
     const { pathname } = props.location;
@@ -53,6 +57,20 @@ export default function withData(WrappedComponent) {
         getAllCompanyCustomers(companyId);
       }
     }, [companyId, getAllCompanyCustomers, shouldFetchCustomers, pathname]);
+
+    // handel fatching categories and materials
+    useEffect(() => {
+      const viewsToFetchCategoriesAndMats = ["/app/materials"];
+      if (
+        viewsToFetchCategoriesAndMats.includes(pathname) &&
+        companyId &&
+        shouldFetchCategories
+      ) {
+        console.log("fetching categories and materials");
+        getCompanyCategories(companyId);
+      }
+    }, [companyId, getCompanyCategories, shouldFetchCategories, pathname]);
+
     return <WrappedComponent />;
   };
 
@@ -60,12 +78,13 @@ export default function withData(WrappedComponent) {
     return {
       shouldFetchEmployees: state.employees.shouldFetchEmployees,
       shouldFetchCustomers: state.customers.shouldFetchCustomers,
+      shouldFetchCategories: state.categories.shouldFetchCategories,
       companyId: state.auth.user["company_id"]
     };
   };
 
   return connect(
     mapStateToProps,
-    { getAllCompanyCustomers, getAllCompanyEmployees }
+    { getAllCompanyCustomers, getAllCompanyEmployees, getCompanyCategories }
   )(withRouter(WithData));
 }

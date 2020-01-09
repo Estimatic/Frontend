@@ -34,7 +34,7 @@ export const createCategory = category => {
   };
 };
 
-export const getCompantCategories = comapanyId => {
+export const getCompanyCategories = comapanyId => {
   return async dispatch => {
     try {
       const companyCateogires = await axios.get(
