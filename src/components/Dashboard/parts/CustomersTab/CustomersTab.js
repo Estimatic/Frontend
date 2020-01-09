@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { ViewWrapper } from "../ViewWrapper";
+import withData from "../../../DataFetchingHOC";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -11,8 +12,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
-
-import { getAllCompanyCustomers } from "../../../../actions/customers";
 
 const columns = [
   { id: "name", label: "Name", minWidth: 120 },
@@ -53,7 +52,7 @@ function CustomersTab(props) {
   const { side_bar_color, secondary_color } = props.ui.colors;
 
   //turns employees into correct format
-  const { customers, shouldFetchCustomers } = props;
+  const { customers } = props;
   useEffect(() => {
     const newRows = customers.map(customer => {
       return createData(
@@ -64,15 +63,6 @@ function CustomersTab(props) {
     });
     setRows(newRows);
   }, [customers]);
-
-  const { companyId, getAllCompanyCustomers } = props;
-
-  useEffect(() => {
-    if (companyId && shouldFetchCustomers) {
-      console.log("fetched customers");
-      getAllCompanyCustomers(companyId);
-    }
-  }, [companyId, getAllCompanyCustomers, shouldFetchCustomers]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -178,12 +168,13 @@ const mapStateToProps = state => {
   return {
     companyId: state.auth.user["company_id"],
     ui: { ...state.ui },
-    customers: state.customers.customers,
-    shouldFetchCustomers: state.customers.shouldFetchCustomers
+    customers: state.customers.customers
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { getAllCompanyCustomers }
-)(CustomersTab);
+export default withData(
+  connect(
+    mapStateToProps,
+    {}
+  )(CustomersTab)
+);

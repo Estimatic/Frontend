@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { ViewWrapper } from "../ViewWrapper";
-import { getAllCompanyEmployees } from "../../../../actions/employees";
+import withData from "../../../DataFetchingHOC";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -59,14 +59,6 @@ function EmployeesTab(props) {
     });
     setRows(newRows);
   }, [employees]);
-
-  const { companyId, getAllCompanyEmployees, shouldFetchEmployees } = props;
-  useEffect(() => {
-    if (companyId && shouldFetchEmployees) {
-      console.log("fetching employees");
-      getAllCompanyEmployees(companyId);
-    }
-  }, [companyId, getAllCompanyEmployees, shouldFetchEmployees]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -172,12 +164,13 @@ const mapStateToProps = state => {
   return {
     employees: state.employees,
     companyId: state.auth.user["company_id"],
-    ui: { ...state.ui },
-    shouldFetchEmployees: state.employees.shouldFetchEmployees
+    ui: { ...state.ui }
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { getAllCompanyEmployees }
-)(EmployeesTab);
+export default withData(
+  connect(
+    mapStateToProps,
+    {}
+  )(EmployeesTab)
+);

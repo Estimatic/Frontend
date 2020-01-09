@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import withData from "../../../DataFetchingHOC";
 
 import { ViewWrapper } from "../ViewWrapper";
 import {
@@ -105,7 +106,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {}
-)(withRouter(ProjectsTab));
+export default withData(
+  connect(
+    mapStateToProps,
+    {}
+  )(withRouter(ProjectsTab))
+);

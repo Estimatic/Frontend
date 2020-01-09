@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Cover } from "../Cover";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getAllCompanyEmployees } from "../../../../actions/employees";
-import { getAllCompanyCustomers } from "../../../../actions/customers";
-// import { createCategory } from "../../../../actions/categories";
+import withData from "../../../DataFetchingHOC";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -40,27 +38,6 @@ function AddProject(props) {
   const [dueDate, setDueDate] = useState(new Date());
   const [customer, setCustomer] = useState("select a customer");
   const [assignedTo, setAssignedTo] = useState("assign an employee");
-
-  // fetch necessary info if not already loaded
-  const {
-    companyId,
-    getAllCompanyEmployees,
-    shouldFetchEmployees,
-    shouldFetchCustomers,
-    getAllCompanyCustomers
-  } = props;
-  useEffect(() => {
-    if (companyId && shouldFetchEmployees) {
-      console.log("fetching employees");
-      getAllCompanyEmployees(companyId);
-    }
-  }, [companyId, getAllCompanyEmployees, shouldFetchEmployees]);
-  useEffect(() => {
-    if (companyId && shouldFetchCustomers) {
-      console.log("fetched customers");
-      getAllCompanyCustomers(companyId);
-    }
-  }, [companyId, getAllCompanyCustomers, shouldFetchCustomers]);
 
   // ui
   const { side_bar_color, secondary_color } = props.ui.colors;
@@ -298,16 +275,16 @@ const mapStateToProps = state => {
     ui: { ...state.ui },
     customers: state.customers.customers,
     employees: state.employees.employees,
-    shouldFetchEmployees: state.employees.shouldFetchEmployees,
-    shouldFetchCustomers: state.customers.shouldFetchCustomers,
     companyId: state.auth.user["company_id"]
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { getAllCompanyEmployees, getAllCompanyCustomers }
-)(withRouter(AddProject));
+export default withData(
+  connect(
+    mapStateToProps,
+    {}
+  )(withRouter(AddProject))
+);
 
 const FormWrapper = styled.div`
   margin: auto;

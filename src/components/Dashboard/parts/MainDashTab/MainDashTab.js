@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ViewWrapper } from "../ViewWrapper";
 import ReactMapGL, { Marker } from "react-map-gl";
 import House from "@material-ui/icons/House";
+import withData from "../../../DataFetchingHOC";
 
 import { connect } from "react-redux";
-import { getAllCompanyCustomers } from "../../../../actions/customers.js";
 
 /* 
 still have error in console: 
@@ -35,15 +35,6 @@ function MainDashTab(props) {
       width: "100%"
     });
   };
-
-  const { companyId, getAllCompanyCustomers, shouldFetchCustomers } = props;
-
-  useEffect(() => {
-    if (companyId && shouldFetchCustomers) {
-      console.log("fetched customers");
-      getAllCompanyCustomers(companyId);
-    }
-  }, [companyId, getAllCompanyCustomers, shouldFetchCustomers]);
 
   return (
     <ViewWrapper>
@@ -82,13 +73,14 @@ function MainDashTab(props) {
 const mapStatToProps = state => {
   return {
     customers: state.customers.customers,
-    shouldFetchCustomers: state.customers.shouldFetchCustomers,
     userId: state.auth.user._id,
     companyId: state.auth.user.company_id
   };
 };
 
-export default connect(
-  mapStatToProps,
-  { getAllCompanyCustomers }
-)(MainDashTab);
+export default withData(
+  connect(
+    mapStatToProps,
+    {}
+  )(MainDashTab)
+);
