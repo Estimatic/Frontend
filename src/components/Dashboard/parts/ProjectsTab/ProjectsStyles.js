@@ -49,5 +49,31 @@ export const SingleProjectChipStatus = styled.div`
 `;
 
 export const SingleProjectChipInfo = styled.div`
+  width: 100%;
   min-height: 150px;
+  padding: 8px;
+
+  hr {
+    margin-bottom: 0;
+  }
+
+  h3 {
+    font-size: 20px;
+    margin: 0;
+    margin-bottom: 4px;
+  }
+  h5 {
+    margin-bottom: 4px;
+    margin: 0;
+    font-weight: 200;
+  }
+  p {
+    margin: 8px 0;
+  }
+`;
+
+export const TopSection = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `;
