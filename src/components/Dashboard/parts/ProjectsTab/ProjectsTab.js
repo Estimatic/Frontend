@@ -39,7 +39,7 @@ function ProjectsTab(props) {
   };
 
   const { side_bar_color, secondary_color } = props.ui.colors;
-  const showCorrectButton = isEstimated => {
+  const showCorrectButton = (isEstimated, projectId) => {
     return isEstimated ? (
       <button
         style={{
@@ -51,7 +51,7 @@ function ProjectsTab(props) {
           borderRadius: "4px"
         }}
         onClick={() => {
-          // props.history.push("/app/customers/create");
+          // props.history.push("/app/projects/build");
         }}
       >
         view estimate
@@ -67,7 +67,7 @@ function ProjectsTab(props) {
           borderRadius: "4px"
         }}
         onClick={() => {
-          // props.history.push("/app/customers/create");
+          props.history.push("/app/projects/build/" + projectId);
         }}
       >
         create estimate
@@ -107,7 +107,7 @@ function ProjectsTab(props) {
                   assigned to:{" "}
                   <strong>{getEmployeeName(project.assigned_to)}</strong>
                 </p>
-                {showCorrectButton(project.is_estimated)}
+                {showCorrectButton(project.is_estimated, project._id)}
               </SingleProjectChipInfo>
             </SingleProjectChip>
           );
